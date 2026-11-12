@@ -1,0 +1,2963 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>英语情景对话实验室 · English Scenario Lab</title>
+<meta name="description" content="10 个高频英语对话场景：咖啡店、餐厅、购物、问路、就医、社交、机场、酒店、面试、会议。含场景需求、核心词汇、高频句型、示范对话、易错点与练习。">
+<meta name="color-scheme" content="light">
+<style>
+/* ============ English Scenario Lab ============ */
+:root {
+  --paper: #f4efe4;
+  --paper-deep: #ece4d4;
+  --card: #fffdf8;
+  --card-soft: #faf6ec;
+  --ink: #1f242b;
+  --ink-soft: #3c444e;
+  --muted: #7c7566;
+  --line: #e2d9c8;
+  --line-strong: #d3c7b1;
+  --accent: #b3521d;
+  --accent-deep: #8c3b10;
+  --accent-soft: #f6e6d6;
+  --daily: #b45309;
+  --daily-soft: #fbeed9;
+  --travel: #0369a1;
+  --travel-soft: #e0f0fa;
+  --work: #6d28d9;
+  --work-soft: #efe8fc;
+  --ok: #15803d;
+  --ok-soft: #e5f5e9;
+  --bad: #b91c1c;
+  --bad-soft: #fbe9e7;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow-sm: 0 1px 2px rgba(60, 45, 25, .05), 0 6px 18px rgba(60, 45, 25, .055);
+  --shadow-md: 0 16px 44px rgba(60, 45, 25, .13);
+  --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Songti SC", "Noto Serif SC", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(179, 82, 29, .07), transparent 60%),
+    radial-gradient(900px 500px at -5% 20%, rgba(3, 105, 161, .05), transparent 55%),
+    var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: var(--accent-deep); }
+::selection { background: var(--accent-soft); }
+
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244, 239, 228, .82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(211, 199, 177, .7);
+}
+.topbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); flex: 0 0 auto; }
+.brand-mark {
+  width: 38px; height: 38px; border-radius: 12px;
+  display: grid; place-items: center;
+  background: linear-gradient(145deg, #c9611f, #8c3b10);
+  color: #fff8ee; font-family: var(--serif); font-weight: 700; font-size: 20px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), var(--shadow-sm);
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text b { font-size: 15.5px; letter-spacing: .2px; }
+.brand-text span { font-size: 10.5px; letter-spacing: 1.6px; color: var(--muted); text-transform: uppercase; }
+
+.search-wrap { position: relative; flex: 1 1 320px; max-width: 430px; }
+.search-box {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .18s, box-shadow .18s;
+}
+.search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(179, 82, 29, .13); }
+.search-box svg { flex: 0 0 auto; opacity: .55; }
+.search-box input {
+  border: 0; outline: 0; background: transparent; width: 100%;
+  font: inherit; font-size: 14px; color: var(--ink);
+}
+.search-results {
+  position: absolute; left: 0; right: 0; top: calc(100% + 8px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  padding: 6px;
+  max-height: 340px; overflow: auto;
+  display: none;
+}
+.search-results.open { display: block; }
+.search-hit {
+  display: flex; align-items: baseline; gap: 10px;
+  width: 100%; text-align: left;
+  border: 0; background: transparent;
+  padding: 8px 10px; border-radius: 9px;
+}
+.search-hit:hover, .search-hit:focus-visible { background: var(--accent-soft); }
+.search-hit .w { font-family: var(--serif); font-size: 15px; font-weight: 600; }
+.search-hit .m { color: var(--muted); font-size: 12.5px; margin-left: auto; white-space: nowrap; }
+.search-empty { padding: 14px; color: var(--muted); font-size: 13px; }
+
+.toolbar { display: flex; align-items: center; gap: 8px; margin-left: auto; flex: 0 0 auto; }
+.toggle {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-size: 12.5px;
+  transition: .18s;
+  white-space: nowrap;
+}
+.toggle:hover { border-color: var(--line-strong); }
+.toggle[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: #e2c3a4;
+  color: var(--accent-deep);
+}
+.toggle .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .75; }
+
+/* ---------- 发音设置面板 ---------- */
+.voice-panel { position: relative; }
+.voice-panel > summary { list-style: none; }
+.voice-panel > summary::-webkit-details-marker { display: none; }
+.voice-panel > summary::after { content: "▾"; font-size: 9px; margin-left: 2px; opacity: .7; }
+.voice-panel[open] > summary { background: var(--accent-soft); border-color: #e2c3a4; color: var(--accent-deep); }
+.voice-panel-body {
+  position: absolute; right: 0; top: calc(100% + 8px);
+  width: 340px; background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; box-shadow: var(--shadow-md); padding: 14px; z-index: 80;
+}
+.vp-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.vp-row label { flex: 0 0 66px; font-size: 12px; color: var(--muted); }
+.vp-row select {
+  flex: 1 1 auto; min-width: 0; font: inherit; font-size: 12.5px;
+  padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 8px;
+  background: var(--card); color: var(--ink);
+}
+.vp-actions { display: flex; align-items: center; gap: 10px; margin: 10px 0 6px; }
+.vp-actions .btn { padding: 6px 12px; font-size: 12px; box-shadow: none; }
+#voiceStatus { font-size: 11px; color: var(--muted); line-height: 1.4; }
+.vp-hint { margin: 7px 0 0; font-size: 11.5px; color: var(--muted); line-height: 1.55; }
+
+/* 词汇卡操作按钮 */
+.vocab-acts { display: flex; align-items: center; gap: 5px; margin-left: auto; flex: 0 0 auto; }
+.vocab-acts .spk { margin-left: 0; }
+.dict { font-family: var(--serif); font-size: 11px; font-weight: 700; text-decoration: none; color: var(--muted); }
+.dict:hover { border-color: var(--accent); color: var(--accent-deep); background: var(--accent-soft); }
+
+/* ---------- hero ---------- */
+.hero { max-width: 1280px; margin: 0 auto; padding: 44px 24px 26px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 36px; align-items: end; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: 2.4px; text-transform: uppercase;
+  color: var(--accent-deep); font-weight: 600;
+  margin-bottom: 14px;
+}
+.eyebrow::before { content: ""; width: 26px; height: 1px; background: currentColor; opacity: .6; }
+.hero h1 {
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-size: clamp(32px, 4.6vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -.8px;
+  font-weight: 700;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-lead { margin: 0; max-width: 620px; color: var(--ink-soft); font-size: 15.5px; }
+.hero-lead b { color: var(--ink); font-weight: 600; }
+.hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 13px 15px;
+  box-shadow: var(--shadow-sm);
+}
+.stat b { display: block; font-family: var(--serif); font-size: 24px; line-height: 1.1; }
+.stat span { font-size: 11.5px; color: var(--muted); letter-spacing: .4px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  border-radius: 999px; padding: 10px 18px;
+  font-size: 13.5px; font-weight: 600;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: transform .16s, box-shadow .16s, background .16s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--accent); color: #fffaf3; box-shadow: 0 8px 22px rgba(179, 82, 29, .28); }
+.btn-primary:hover { background: var(--accent-deep); }
+.btn-ghost { background: var(--card); border-color: var(--line-strong); color: var(--ink-soft); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent-deep); }
+
+/* ---------- layout ---------- */
+.layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 6px 24px 70px;
+  display: grid;
+  grid-template-columns: 268px minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+/* ---------- sidebar ---------- */
+.sidebar {
+  position: sticky;
+  top: 78px;
+  align-self: start;
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+}
+.side-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.side-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; }
+.side-head h2 { margin: 0; font-size: 13px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--ink-soft); }
+.progress-label { font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.progress-track { height: 5px; border-radius: 99px; background: var(--paper-deep); margin: 9px 0 15px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, #d97706, var(--accent)); transition: width .35s ease; }
+.nav-group { margin-top: 14px; }
+.nav-group:first-of-type { margin-top: 0; }
+.nav-group-title {
+  font-size: 10.5px; letter-spacing: 1.8px; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 7px 3px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+}
+.nav-group-title i { width: 6px; height: 6px; border-radius: 2px; display: inline-block; }
+.nav-item {
+  display: flex; align-items: center; gap: 9px;
+  width: 100%; text-align: left;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 11px;
+  padding: 7px 9px;
+  margin-bottom: 2px;
+  transition: background .15s, border-color .15s;
+}
+.nav-item:hover { background: var(--card-soft); border-color: var(--line); }
+.nav-item.active { background: var(--accent-soft); border-color: #e6c9ab; }
+.nav-item .ico { font-size: 16px; width: 22px; text-align: center; flex: 0 0 auto; }
+.nav-item .nb { min-width: 0; flex: 1 1 auto; }
+.nav-item .nb b { display: block; font-size: 13px; font-weight: 600; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav-item .nb span { display: block; font-size: 10.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav-item .lvl {
+  flex: 0 0 auto; font-size: 9.5px; font-weight: 700; letter-spacing: .4px;
+  border: 1px solid var(--line-strong); border-radius: 5px; padding: 1px 4px; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.nav-item.done .lvl { display: none; }
+.nav-item .done-mark { display: none; color: var(--ok); font-size: 13px; }
+.nav-item.done .done-mark { display: inline; }
+.side-foot { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 11px; color: var(--muted); line-height: 1.6; }
+.side-foot b { color: var(--ink-soft); }
+
+/* ---------- scenario content ---------- */
+.content { min-width: 0; }
+.scene-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--card);
+  padding: 26px 28px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.scene-hero::after {
+  content: attr(data-num);
+  position: absolute; right: 10px; bottom: -42px;
+  font-family: var(--serif); font-size: 150px; font-weight: 700; line-height: 1;
+  color: rgba(179, 82, 29, .07);
+  pointer-events: none;
+}
+.scene-hero[data-cat="travel"]::after { color: rgba(3, 105, 161, .08); }
+.scene-hero[data-cat="work"]::after { color: rgba(109, 40, 217, .07); }
+.scene-top { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-bottom: 12px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; letter-spacing: .5px;
+  border-radius: 999px; padding: 3px 10px;
+  border: 1px solid var(--line);
+  color: var(--ink-soft); background: var(--card-soft);
+}
+.pill.level { background: #f3ecdd; border-color: #e0d2b8; color: #6b4a1f; font-variant-numeric: tabular-nums; }
+.pill.cat-daily { background: var(--daily-soft); border-color: #f0d4a8; color: #8a4a06; }
+.pill.cat-travel { background: var(--travel-soft); border-color: #b9dcf0; color: #075985; }
+.pill.cat-work { background: var(--work-soft); border-color: #d9c8f7; color: #5b21b6; }
+.scene-title { margin: 0 0 4px; font-family: var(--serif); font-size: clamp(26px, 3.2vw, 38px); line-height: 1.12; letter-spacing: -.4px; }
+.scene-title-en { margin: 0 0 12px; font-family: var(--serif); font-size: 16px; font-style: italic; color: var(--muted); }
+.scene-roles { display: flex; flex-wrap: wrap; gap: 14px; margin: 16px 0 0; }
+.role { display: flex; align-items: center; gap: 8px; }
+.role-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 12px; font-weight: 700;
+  background: var(--paper-deep); color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+.role-avatar.b { background: var(--accent-soft); color: var(--accent-deep); border-color: #e6c9ab; }
+.role span { font-size: 12px; color: var(--muted); }
+.role b { display: block; font-size: 12.5px; color: var(--ink-soft); font-weight: 600; }
+.scene-actions { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.scene-actions .btn { padding: 7px 13px; font-size: 12.5px; font-weight: 500; }
+.mark-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid var(--line-strong); background: var(--card-soft);
+  border-radius: 999px; padding: 7px 14px; font-size: 12.5px; color: var(--ink-soft);
+}
+.mark-btn:hover { border-color: var(--ok); color: var(--ok); }
+.mark-btn.on { background: var(--ok-soft); border-color: #b7e0c2; color: var(--ok); font-weight: 600; }
+.hint-text { font-size: 11.5px; color: var(--muted); }
+.spacer { flex: 1 1 auto; }
+.nav-arrows { display: flex; gap: 6px; }
+.arrow-btn {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--line-strong); background: var(--card);
+  display: grid; place-items: center; color: var(--ink-soft);
+  transition: .15s;
+}
+.arrow-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-deep); }
+.arrow-btn:disabled { opacity: .35; cursor: default; }
+
+/* ---------- sections ---------- */
+.sec {
+  margin-top: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.sec-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.sec-kicker { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.sec-head h3 { margin: 0; font-size: 18px; letter-spacing: -.1px; }
+.sec-head .en { font-family: var(--serif); font-style: italic; font-size: 13.5px; color: var(--muted); }
+.sec-head .count { margin-left: auto; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* requirements */
+.req-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 22px; }
+.req-block { min-width: 0; }
+.req-block h4 { margin: 0 0 7px; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.req-block p { margin: 0 0 10px; color: var(--ink-soft); }
+.can-do { list-style: none; margin: 0; padding: 0; }
+.can-do li {
+  position: relative; padding: 3px 0 3px 25px;
+  color: var(--ink-soft); font-size: 14px;
+}
+.can-do li::before {
+  content: "✓"; position: absolute; left: 2px; top: 3px;
+  color: var(--ok); font-size: 12px; font-weight: 700;
+}
+.tips { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.tips li {
+  position: relative; padding: 9px 12px 9px 33px;
+  background: var(--card-soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 13.5px; color: var(--ink-soft);
+}
+.tips li::before {
+  content: "💡"; position: absolute; left: 11px; top: 8px; font-size: 12px;
+}
+.roles-line { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.roles-line .pill { font-size: 11.5px; }
+
+/* vocabulary */
+.vocab-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: -4px 0 14px; }
+.chip {
+  border: 1px solid var(--line-strong); background: var(--card-soft);
+  border-radius: 999px; padding: 4px 11px; font-size: 12px; color: var(--ink-soft);
+  transition: .15s;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent-deep); }
+.chip.on { background: var(--accent-soft); border-color: #e6c9ab; color: var(--accent-deep); font-weight: 600; }
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(236px, 1fr)); gap: 12px; }
+.vocab-card {
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--card-soft);
+  border-radius: 13px;
+  padding: 13px 15px 14px;
+  transition: transform .16s, box-shadow .16s, border-color .16s;
+  cursor: pointer;
+}
+.vocab-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); border-color: var(--line-strong); background: var(--card); }
+.vocab-card.flash { animation: flash 1.4s ease; }
+@keyframes flash {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(179, 82, 29, 0); }
+  20% { box-shadow: 0 0 0 4px rgba(179, 82, 29, .22); border-color: var(--accent); }
+}
+.vocab-top { display: flex; align-items: flex-start; gap: 8px; }
+.vocab-word { font-family: var(--serif); font-size: 19px; font-weight: 700; line-height: 1.2; letter-spacing: -.2px; }
+.vocab-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 4px; }
+.ipa { font-family: "Lucida Sans Unicode", "Arial Unicode MS", sans-serif; font-size: 12.5px; color: var(--muted); }
+.pos { font-size: 10.5px; font-style: italic; color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 0 5px; }
+.spk {
+  flex: 0 0 auto; margin-left: auto;
+  width: 27px; height: 27px; border-radius: 50%;
+  border: 1px solid var(--line-strong); background: var(--card);
+  display: grid; place-items: center; color: var(--muted);
+  transition: .15s;
+}
+.spk:hover { border-color: var(--accent); color: var(--accent-deep); background: var(--accent-soft); }
+.spk svg { width: 13px; height: 13px; }
+.vocab-zh { margin: 8px 0 0; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.vocab-ex { margin: 8px 0 0; padding-top: 8px; border-top: 1px dashed var(--line); font-size: 12.5px; color: var(--ink-soft); font-family: var(--serif); font-style: italic; line-height: 1.5; }
+.vocab-ex-zh { margin: 2px 0 0; font-size: 11.5px; color: var(--muted); font-family: var(--sans); font-style: normal; }
+body.hide-zh .vocab-zh, body.hide-zh .vocab-ex-zh { filter: blur(5px); opacity: .55; user-select: none; }
+.vocab-card.reveal .vocab-zh, .vocab-card.reveal .vocab-ex-zh { filter: none; opacity: 1; }
+
+/* phrases */
+.phrase-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.phrase-group { border: 1px solid var(--line); border-radius: 13px; padding: 14px 15px; background: var(--card-soft); }
+.phrase-group h4 { margin: 0 0 9px; font-size: 12.5px; font-weight: 700; color: var(--accent-deep); display: flex; align-items: center; gap: 7px; }
+.phrase-group h4 .en { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--muted); font-size: 11.5px; margin-left: auto; }
+.phrase-row { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-top: 1px dashed var(--line); }
+.phrase-row:first-of-type { border-top: 0; }
+.phrase-en { flex: 1 1 auto; font-size: 13.5px; line-height: 1.5; color: var(--ink); font-family: var(--serif); }
+.phrase-zh { display: block; font-family: var(--sans); font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+.phrase-row .spk { width: 24px; height: 24px; margin-top: 1px; }
+.phrase-row .spk svg { width: 11px; height: 11px; }
+.phrase-row.flash { animation: flash 1.5s ease; border-radius: 8px; }
+
+/* dialogue */
+.dlg-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 14px; }
+.dlg-toolbar .btn { padding: 7px 14px; font-size: 12.5px; }
+.dlg-status { font-size: 11.5px; color: var(--muted); }
+.dlg { display: flex; flex-direction: column; gap: 11px; }
+.bubble-row { display: flex; gap: 10px; align-items: flex-start; }
+.bubble-row.b { flex-direction: row-reverse; }
+.bubble-avatar {
+  flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  background: var(--paper-deep); border: 1px solid var(--line); color: var(--ink-soft);
+}
+.bubble-row.b .bubble-avatar { background: var(--accent); border-color: var(--accent-deep); color: #fff8ee; }
+.bubble-wrap { max-width: min(86%, 660px); }
+.bubble-who { font-size: 10.5px; letter-spacing: .8px; color: var(--muted); margin: 0 2px 3px; text-transform: uppercase; }
+.bubble-row.b .bubble-who { text-align: right; }
+.bubble {
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--card-soft);
+  border-radius: 4px 15px 15px 15px;
+  padding: 10px 14px;
+  font-family: var(--serif);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.bubble-row.b .bubble { background: #fbf1e7; border-color: #ecd3b8; border-radius: 15px 4px 15px 15px; }
+.bubble.playing { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(179, 82, 29, .12); }
+.bubble-en { display: flex; gap: 8px; align-items: flex-start; }
+.bubble-en .spk { width: 23px; height: 23px; margin: 0; }
+.bubble-en .spk svg { width: 10px; height: 10px; }
+.bubble-zh { margin: 5px 0 0; font-family: var(--sans); font-size: 12px; color: var(--muted); }
+
+/* mistakes */
+.mistake-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.mistake {
+  border: 1px solid var(--line); border-radius: 13px; overflow: hidden;
+  background: var(--card-soft);
+}
+.mistake-wrong, .mistake-right { padding: 10px 14px; font-family: var(--serif); font-size: 13.5px; line-height: 1.5; }
+.mistake-wrong { background: var(--bad-soft); color: #7f1d1d; border-bottom: 1px solid #f3d3ce; }
+.mistake-right { background: var(--ok-soft); color: #14532d; }
+.mistake-wrong::before { content: "✗ "; font-weight: 700; }
+.mistake-right::before { content: "✓ "; font-weight: 700; }
+.mistake-note { padding: 9px 14px 11px; font-size: 12px; color: var(--muted); border-top: 1px dashed var(--line); }
+
+/* practice tasks + quiz */
+.practice-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 20px; }
+.task-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+.task-list li {
+  display: flex; gap: 10px; align-items: flex-start;
+  border: 1px solid var(--line); background: var(--card-soft);
+  border-radius: 11px; padding: 10px 12px; font-size: 13.5px; color: var(--ink-soft);
+}
+.task-list li .num {
+  flex: 0 0 auto; width: 21px; height: 21px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  background: var(--accent-soft); color: var(--accent-deep); margin-top: 1px;
+}
+.task-list li b { color: var(--ink); }
+.quiz-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.quiz-head h4 { margin: 0; font-size: 13px; }
+.quiz-score { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.quiz { display: grid; gap: 12px; }
+.q-card { border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px; background: var(--card-soft); }
+.q-title { margin: 0 0 9px; font-size: 13.5px; font-weight: 600; line-height: 1.5; }
+.q-opts { display: grid; gap: 6px; }
+.q-opt {
+  text-align: left; border: 1px solid var(--line); background: var(--card);
+  border-radius: 9px; padding: 7px 11px; font-size: 12.5px;
+  transition: .15s; display: flex; gap: 8px; align-items: baseline;
+}
+.q-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.q-opt .k { font-family: var(--serif); font-weight: 700; color: var(--muted); font-size: 12px; }
+.q-opt.correct { background: var(--ok-soft); border-color: #a7d8b4; color: #14532d; font-weight: 600; }
+.q-opt.wrong { background: var(--bad-soft); border-color: #eeb9b3; color: #7f1d1d; }
+.q-opt:disabled { cursor: default; }
+.q-why { margin: 8px 0 0; font-size: 12px; color: var(--muted); display: none; }
+.q-card.answered .q-why { display: block; }
+
+/* sources */
+.sources { margin-top: 16px; }
+.sources h4 { margin: 0 0 8px; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.source-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.source-list li { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+.source-list a { color: var(--accent-deep); text-decoration: none; border-bottom: 1px dotted #d7b492; }
+.source-list a:hover { border-bottom-style: solid; }
+
+
+/* CEFR 说明 */
+.cefr-note { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0 6px; padding: 10px 12px; background: var(--card-soft); border: 1px solid var(--line); border-radius: 11px; }
+.cefr-note .cefr-badge { flex: 0 0 auto; font-size: 11px; font-weight: 700; color: var(--accent-deep); background: var(--accent-soft); border: 1px solid #e6c9ab; border-radius: 6px; padding: 2px 7px; white-space: nowrap; margin-top: 1px; }
+.cefr-note b { display: block; font-size: 10.5px; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); }
+.cefr-note p { margin: 2px 0 3px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; }
+.cefr-note a { font-size: 11px; color: var(--accent-deep); text-decoration: none; border-bottom: 1px dotted #d7b492; }
+
+/* 现实规则 */
+.realworld { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.realworld h4 { margin: 0 0 9px; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.real-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 8px; }
+.real-list li { background: var(--card-soft); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; font-size: 12.5px; line-height: 1.6; color: var(--ink-soft); }
+.real-list li .real-src { display: inline-block; margin-top: 4px; font-size: 11px; color: var(--accent-deep); text-decoration: none; border-bottom: 1px dotted #d7b492; }
+.real-list li .real-src:hover { border-bottom-style: solid; }
+
+/* 任务示范回答 */
+.task-body { flex: 1 1 auto; min-width: 0; }
+.model-answer { margin-top: 6px; }
+.model-answer summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--accent-deep); padding: 2px 0; user-select: none; }
+.model-answer summary::-webkit-details-marker { display: none; }
+.model-answer summary::before { content: "▸"; font-size: 9px; transition: transform .15s; }
+.model-answer[open] summary::before { transform: rotate(90deg); }
+.model-answer p { margin: 6px 0 0; font-size: 12.5px; line-height: 1.65; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 9px; padding: 8px 11px; }
+
+/* 场景底部翻页 */
+.scene-foot-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+.scene-foot-nav .btn { flex: 1 1 auto; justify-content: center; }
+.scene-foot-nav .btn:disabled { opacity: .45; cursor: default; }
+
+/* footer */
+.site-footer {
+  max-width: 1280px; margin: 0 auto; padding: 30px 24px 50px;
+  border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 12.5px;
+}
+.site-footer h3 { margin: 0 0 10px; font-size: 13px; color: var(--ink-soft); letter-spacing: .4px; }
+.site-footer .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+.site-footer a { color: var(--accent-deep); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+.site-footer .note { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--line); line-height: 1.7; }
+
+/* toast */
+.toast {
+  position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px);
+  background: #2a2620; color: #fdf6e9; font-size: 13px;
+  padding: 9px 18px; border-radius: 999px; box-shadow: var(--shadow-md);
+  opacity: 0; pointer-events: none; transition: .22s; z-index: 100;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* reveal animation */
+.fade-in { animation: fadeIn .3s ease; }
+@keyframes fadeIn { from { opacity: .35; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+/* focus visible */
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1040px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 22px; }
+  .hero-stats { max-width: 520px; }
+  .layout { grid-template-columns: 1fr; gap: 18px; }
+  .sidebar { position: static; max-height: none; overflow: visible; }
+  .side-card { padding: 14px; }
+  .nav-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 4px 14px; }
+  .nav-group { margin-top: 6px; }
+  .req-grid, .practice-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  body { font-size: 14.5px; }
+  .voice-panel-body { position: fixed; left: 12px; right: 12px; top: 64px; width: auto; }
+  .topbar-inner { padding: 9px 14px; gap: 10px; flex-wrap: wrap; }
+  .brand-text span { display: none; }
+  .search-wrap { order: 3; flex: 1 1 100%; max-width: none; }
+  .toolbar { margin-left: auto; }
+  .toggle { padding: 6px 10px; font-size: 11.5px; }
+  .hero { padding: 28px 14px 18px; }
+  .layout { padding: 4px 14px 50px; }
+  .scene-hero { padding: 20px 17px; border-radius: 18px; }
+  .sec { padding: 17px 16px 18px; }
+  .vocab-grid { grid-template-columns: 1fr; }
+  .phrase-groups { grid-template-columns: 1fr; }
+  .mistake-grid { grid-template-columns: 1fr; }
+  .bubble-wrap { max-width: 88%; }
+  .bubble { font-size: 14px; }
+  .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 7px; }
+  .stat { padding: 10px 11px; }
+  .stat b { font-size: 19px; }
+  .stat span { font-size: 10.5px; }
+  .site-footer { padding: 24px 14px 40px; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  body { background: #fff; font-size: 12px; }
+  .topbar, .sidebar, .hero, .site-footer, .scene-actions .arrow-btn, .scene-foot-nav, .spk, .dlg-toolbar, .vocab-toolbar, .quiz, .toast { display: none !important; }
+  .layout { display: block; padding: 0; }
+  .scene-hero, .sec { box-shadow: none; border-color: #ccc; break-inside: avoid-page; }
+  .vocab-card, .bubble, .mistake, .tips li, .task-list li { break-inside: avoid; }
+  body.hide-zh .vocab-zh, body.hide-zh .vocab-ex-zh { filter: none; opacity: 1; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#/" aria-label="回到首页">
+      <span class="brand-mark" aria-hidden="true">Aa</span>
+      <span class="brand-text">
+        <b>英语情景对话实验室</b>
+        <span>English Scenario Lab</span>
+      </span>
+    </a>
+
+    <div class="search-wrap">
+      <label class="search-box" for="searchInput">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="searchInput" type="search" placeholder="搜索词汇或句型（中英文都可以，按 / 聚焦）" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="search-results" id="searchResults" role="listbox" aria-label="搜索结果"></div>
+    </div>
+
+    <div class="toolbar">
+      <details class="voice-panel" id="voicePanel">
+        <summary class="toggle" title="发音设置">🔊 发音</summary>
+        <div class="voice-panel-body">
+          <div class="vp-row">
+            <label for="voiceSelect">英语声音</label>
+            <select id="voiceSelect"><option value="">自动（推荐）</option></select>
+          </div>
+          <div class="vp-row">
+            <label for="rateSelect">语速</label>
+            <select id="rateSelect">
+              <option value="0.8">0.8× 慢速</option>
+              <option value="0.9">0.9× 稍慢</option>
+              <option value="1" selected>1.0× 正常</option>
+              <option value="1.1">1.1× 稍快</option>
+            </select>
+          </div>
+          <div class="vp-actions">
+            <button class="btn btn-primary" type="button" id="voiceTestBtn">试听</button>
+            <span id="voiceStatus">正在读取系统声音…</span>
+          </div>
+          <p class="vp-hint">声音由浏览器/系统提供。若听起来像中文口音或很机械，换一个 <b>US / UK</b> 声音试试；Chrome 的 <b>Google US English</b>、macOS 的 <b>Samantha / Ava / Daniel</b> 通常最自然。</p>
+          <p class="vp-hint">想听真人发音：点词汇卡右侧的 <b>C</b>，会打开 Cambridge 词典音频（需联网）。</p>
+        </div>
+      </details>
+      <button class="toggle" id="zhToggle" type="button" aria-pressed="false">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="zh-label">中文：显示</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Scenario-based English · 情景英语</span>
+        <h1>换一个场景，<br><em>换一种说法</em>。</h1>
+        <p class="hero-lead">
+          同样一句“我想要”，在咖啡店、餐厅和会议室里的说法并不一样。这份手册按
+          <b>场景需求 → 核心词汇 → 高频句型 → 示范对话 → 易错点 → 情景练习</b>
+          组织 10 个高频场景。场景难度对齐 <b>CEFR 官方能力描述</b>，词汇与句型整理自 British Council、EnglishClub、ESL Fast，
+          现实规则引用 <b>GOV.UK、NHS、FSA、TfL</b> 等官方来源，均可点开核对。
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="startBtn" type="button">从第一个场景开始 ↓</button>
+          <button class="btn btn-ghost" id="randomBtn" type="button">🎲 随机来一个</button>
+          <a class="btn btn-ghost" href="#sources">查看参考来源</a>
+        </div>
+      </div>
+      <div class="hero-stats" aria-label="内容统计">
+        <div class="stat"><b id="statScenarios">10</b><span>个真实场景</span></div>
+        <div class="stat"><b id="statWords">112</b><span>个核心词汇</span></div>
+        <div class="stat"><b id="statPhrases">156</b><span>条高频句型</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="layout" id="layout">
+    <aside class="sidebar">
+      <div class="side-card">
+        <div class="side-head">
+          <h2>场景 Scenarios</h2>
+          <span class="progress-label" id="progressText">0 / 10</span>
+        </div>
+        <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="nav-groups" id="navGroups"></div>
+        <div class="side-foot">
+          <b>使用提示：</b>按 <b>/</b> 搜索词汇；点喇叭朗读英文；点词汇卡翻转释义；
+          标记“已练习”后会记录进度（保存在本机浏览器）。
+        </div>
+      </div>
+    </aside>
+    <div class="content" id="scenarioRoot"></div>
+  </div>
+
+  <footer class="site-footer" id="sources">
+    <h3>参考来源 · Sources</h3>
+    <div class="cols">
+      <div>
+        <ul>
+          <li><a href="https://englishonline.britishcouncil.org/blog/articles/your-guide-to-small-talk-topics-phrases-and-openers-in-english/" target="_blank" rel="noopener noreferrer">British Council · Small talk topics, phrases &amp; openers</a></li>
+          <li><a href="https://englishonline.britishcouncil.org/blog/articles/english-for-online-shopping-phrases-and-vocabulary-you-need-to-know/" target="_blank" rel="noopener noreferrer">British Council · English for online shopping</a></li>
+          <li><a href="https://englishonline.britishcouncil.org/blog/articles/employability-skills-how-to-ace-competency-based-interview-questions/" target="_blank" rel="noopener noreferrer">British Council · Competency-based interview questions</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><a href="https://www.englishclub.com/english-for-work/hotel-check-in-out.php" target="_blank" rel="noopener noreferrer">EnglishClub · Checking guests in and out</a></li>
+          <li><a href="https://www.englishclub.com/english-for-work/hotel-vocabulary.php" target="_blank" rel="noopener noreferrer">EnglishClub · Hotel vocabulary</a></li>
+          <li><a href="https://www.englishclub.com/business-english/vocabulary-meetings.php" target="_blank" rel="noopener noreferrer">EnglishClub · Vocabulary for meetings</a></li>
+          <li><a href="https://www.englishclub.com/vocabulary/illustrated/airport.php" target="_blank" rel="noopener noreferrer">EnglishClub · Illustrated airport vocabulary</a></li>
+          <li><a href="https://www.englishclub.com/speaking/telephone-practice-ordering.php" target="_blank" rel="noopener noreferrer">EnglishClub · Telephone practice</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><a href="https://www.eslfast.com/easydialogs/" target="_blank" rel="noopener noreferrer">ESL Fast · Easy Conversations（Eating Out / Health / Travel / Jobs / Shopping / Transportation / Daily Life）</a></li>
+          <li><a href="https://dictionary.cambridge.org/" target="_blank" rel="noopener noreferrer">Cambridge Dictionary（音标与发音参考）</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><a href="https://www.gov.uk/consumer-protection-rights" target="_blank" rel="noopener noreferrer">GOV.UK · Consumer protection rights</a></li>
+          <li><a href="https://www.gov.uk/hand-luggage-restrictions" target="_blank" rel="noopener noreferrer">GOV.UK · Hand luggage restrictions</a></li>
+          <li><a href="https://www.gov.uk/uk-border-control" target="_blank" rel="noopener noreferrer">GOV.UK · UK border control</a></li>
+          <li><a href="https://www.food.gov.uk/business-guidance/allergen-guidance-for-food-businesses" target="_blank" rel="noopener noreferrer">Food Standards Agency · Allergen guidance</a></li>
+          <li><a href="https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/" target="_blank" rel="noopener noreferrer">NHS · When to use 111</a></li>
+          <li><a href="https://www.nhs.uk/nhs-services/pharmacies/" target="_blank" rel="noopener noreferrer">NHS · Pharmacies</a></li>
+          <li><a href="https://tfl.gov.uk/travel-information/visiting-london/visitor-oyster-card" target="_blank" rel="noopener noreferrer">TfL · Visitor Oyster card</a></li>
+          <li><a href="https://nationalcareers.service.gov.uk/careers-advice/interview-advice/the-star-method" target="_blank" rel="noopener noreferrer">National Careers Service · The STAR method</a></li>
+          <li><a href="https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions" target="_blank" rel="noopener noreferrer">Council of Europe · CEFR level descriptions</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">
+      内容说明：场景需求、词汇范围与高频句型参考上述公开英语学习资料整理，场景难度对齐 CEFR 官方能力描述；现实规则援引英国官方/权威来源，
+      但政策与规定会更新，出行、就医、购物、办事前请以官方最新信息为准。示范对话、双语句型与练习题为本页原创编写，仅供学习参考，非官方教材。
+      音标采用英式发音（部分词标注美式差异），朗读使用浏览器内置 Web Speech API，音色取决于系统语音包。
+      <br>建议练习方法：先读“场景需求”明确目标 → 用词汇卡自测 → 跟读句型 → 播放并跟读对话 → 完成角色扮演任务与小测。最后更新：2026 年 11 月。
+    </p>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===== 场景数据（一）：日常 5 个场景 ===== */
+const SCENARIOS = [
+  {
+    id: "cafe",
+    cat: "daily",
+    icon: "☕",
+    level: "A2",
+    zh: "咖啡店点单",
+    en: "Ordering at a Café",
+    roles: [
+      { en: "Barista", zh: "咖啡师" },
+      { en: "Customer", zh: "顾客" }
+    ],
+    setting: "你在一家繁忙的街角咖啡店排队点单。菜单上有各种咖啡、奶类替代品和杯型，店员还会追问尺寸、冷热、堂食或外带，以及要不要积分。",
+    goal: "在 1 分钟内用英文完成一次完整点单：说清饮品、杯型、冷热、奶类，回答店员的追问并顺利付款。",
+    canDo: [
+      "看懂菜单上常见的咖啡名称与杯型（small / medium / large）",
+      "用礼貌句型点单，而不是 I want…",
+      "说明堂食（for here / eat in）或外带（takeaway / to go）",
+      "说明奶类与咖啡因偏好：oat milk, decaf, extra shot",
+      "听懂店员的追问，并回答名字、付款方式、积分"
+    ],
+    tips: [
+      "英式常用 takeaway，美式常用 to go；堂食英式说 eat in，美式说 for here。",
+      "“Could I get…” 比 “I want…” 礼貌；“Could I have…” 更正式一点。",
+      "店员问 “Is that everything?” 时，要加东西说 “Could I also get…?”，否则说 “That's everything, thanks.”",
+      "杯型没有统一标准：点单前先看菜单，拿不准就问 “What sizes do you have?”",
+      "部分店会把名字写在杯子上：回答 “It's Lily.” 或 “Lily, L-I-L-Y.” 即可。"
+    ],
+    vocab: [
+      { en: "espresso", ipa: "/eˈspresəʊ/", pos: "n.", zh: "浓缩咖啡", ex: "Two espressos, please.", exZh: "请给我两杯浓缩咖啡。" },
+      { en: "latte", ipa: "/ˈlɑːteɪ/", pos: "n.", zh: "拿铁", ex: "I'd like a medium latte.", exZh: "我要一杯中杯拿铁。" },
+      { en: "flat white", ipa: "/ˌflæt ˈwaɪt/", pos: "n.", zh: "馥芮白（澳白）", ex: "A flat white with oat milk, please.", exZh: "一杯燕麦奶馥芮白。" },
+      { en: "cappuccino", ipa: "/ˌkæpuˈtʃiːnəʊ/", pos: "n.", zh: "卡布奇诺", ex: "Could I get a cappuccino?", exZh: "我可以要一杯卡布奇诺吗？" },
+      { en: "decaf", ipa: "/ˈdiːkæf/", pos: "n./adj.", zh: "低因咖啡（的）", ex: "Is the decaf available?", exZh: "有低因咖啡吗？" },
+      { en: "oat milk", ipa: "/ˈəʊt mɪlk/", pos: "n.", zh: "燕麦奶", ex: "Can I have oat milk instead?", exZh: "可以换成燕麦奶吗？" },
+      { en: "extra shot", ipa: "/ˌekstrə ˈʃɒt/", pos: "n.", zh: "加一份浓缩", ex: "With an extra shot, please.", exZh: "请加一份浓缩。" },
+      { en: "takeaway", ipa: "/ˈteɪkəweɪ/", pos: "n.", zh: "外带（英式）", ex: "Takeaway, please.", exZh: "外带，谢谢。" },
+      { en: "for here", ipa: "/fɔː ˈhɪə/", pos: "phr.", zh: "堂食（美式）", ex: "For here or to go?", exZh: "堂食还是外带？" },
+      { en: "receipt", ipa: "/rɪˈsiːt/", pos: "n.", zh: "收据", ex: "Could I have a receipt, please?", exZh: "可以给我一张收据吗？" }
+    ],
+    phrases: [
+      {
+        fn: "开场点单", en: "Ordering",
+        items: [
+          { en: "Hi, could I get a medium flat white, please?", zh: "你好，可以给我一杯中杯馥芮白吗？" },
+          { en: "I'll have a latte to take away.", zh: "我要一杯拿铁外带。" },
+          { en: "Can I get two coffees to go?", zh: "可以给我两杯咖啡带走吗？" }
+        ]
+      },
+      {
+        fn: "尺寸与冷热", en: "Size & temperature",
+        items: [
+          { en: "What sizes do you have?", zh: "你们有哪些杯型？" },
+          { en: "Could I get that in a large?", zh: "可以给我换成大杯吗？" },
+          { en: "One hot and one iced, please.", zh: "一杯热的，一杯冰的。" }
+        ]
+      },
+      {
+        fn: "奶类与咖啡因", en: "Milk & caffeine",
+        items: [
+          { en: "Do you have oat milk?", zh: "你们有燕麦奶吗？" },
+          { en: "Could you make that decaf?", zh: "可以做成低因的吗？" },
+          { en: "With an extra shot, please.", zh: "请加一份浓缩。" }
+        ]
+      },
+      {
+        fn: "付款与积分", en: "Paying",
+        items: [
+          { en: "Card, please.", zh: "刷卡。" },
+          { en: "Could you scan my loyalty card?", zh: "能帮我扫一下积分卡吗？" },
+          { en: "Could I have a receipt, please?", zh: "可以给我一张收据吗？" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Hi, good morning. What can I get for you?", zh: "早上好，请问您要点什么？" },
+      { who: "B", en: "Morning! Could I get a medium flat white, please?", zh: "早上好！可以给我一杯中杯馥芮白吗？" },
+      { who: "A", en: "Sure. Oat milk or regular?", zh: "好的。燕麦奶还是普通牛奶？" },
+      { who: "B", en: "Oat milk, please. Oh, and could I add a blueberry muffin?", zh: "燕麦奶，谢谢。对了，可以再加一个蓝莓玛芬吗？" },
+      { who: "A", en: "Of course. Is that everything?", zh: "当然可以。就这些吗？" },
+      { who: "B", en: "That's everything. Takeaway, please.", zh: "就这些。外带，谢谢。" },
+      { who: "A", en: "Okay, that's five forty. Can I have a name for the cup?", zh: "好的，一共 5.4 镑。杯子上写什么名字？" },
+      { who: "B", en: "It's Lily. And could you scan my loyalty card?", zh: "Lily。能帮我扫一下积分卡吗？" },
+      { who: "A", en: "Done. Your order will be ready at the end of the counter.", zh: "好了。您的饮品在柜台尽头取。" },
+      { who: "B", en: "Great, thanks a lot!", zh: "太好了，非常感谢！" }
+    ],
+    mistakes: [
+      { wrong: "I want a coffee.", right: "Could I get a coffee, please?", note: "I want 在点单时显得直接甚至像命令；Could I get / I'd like 更自然礼貌。" },
+      { wrong: "One take out.", right: "One to go, please. / Takeaway, please.", note: "take out 多作动词短语；外带名词英式说 takeaway，美式说 to go。" },
+      { wrong: "Can I have a big coffee?", right: "Could I get a large latte?", note: "big 描述杯型不地道；用 small / medium / large，并说清楚具体饮品。" }
+    ],
+    tasks: [
+      "角色扮演：点一杯“大杯、热、燕麦奶、低因拿铁”，再加一份甜点，最后说外带。",
+      "把对话中顾客的台词换成你自己的偏好，完整录一遍，注意礼貌语调与连读。",
+      "挑战：店员说 “Sorry, we're out of oat milk.”，用英文请对方给一个替代方案。"
+    ],
+    quiz: [
+      {
+        q: "店员问 “For here or to go?”，你想在店里喝，应回答：",
+        options: ["To go, please.", "For here, please.", "No, thank you."],
+        a: 1,
+        why: "for here 表示堂食；to go 表示外带（美式说法）。"
+      },
+      {
+        q: "想要低因咖啡，最自然的说法是：",
+        options: ["No coffee, please.", "Could I make that decaf?", "One black coffee with no milk."],
+        a: 1,
+        why: "decaf 指低因咖啡（decaffeinated）；No coffee 意思是“不要咖啡”。"
+      },
+      {
+        q: "哪一句点单最礼貌？",
+        options: ["I want a latte.", "Give me a latte.", "Could I get a latte, please?"],
+        a: 2,
+        why: "Could I get…, please? 是咖啡店最常用的礼貌点单句型。"
+      }
+    ],
+    realWorld: [
+      { fact: "英国咖啡店普遍是先点单付款、再到取餐台等叫名字；杯型与奶类选项因店而异，不确定就直接问。", t: "British Council LearnEnglish · Ordering in a café", u: "https://learnenglish.britishcouncil.org/free-resources/listening/a1/ordering-cafe" },
+      { fact: "常见奶类替代（oat / soy / almond）与低因咖啡（decaf）通常需要额外加钱，点单时可以先问清楚。", t: "British Council LearnEnglish · Ordering in a café", u: "https://learnenglish.britishcouncil.org/free-resources/listening/a1/ordering-cafe" },
+    ],
+    models: [
+      "Hi, could I get a large hot latte with oat milk, please? Could you make that decaf? And I'll add a blueberry muffin. Takeaway, please.",
+      "Morning! Could I get a medium cappuccino with soy milk, please? No sugar, thanks. For here.",
+      "Oh, no problem. What other milk alternatives do you have? Soy or almond would be fine.",
+    ],
+    sources: [
+      { t: "ESL Fast · Easy Conversations: Eating Out", u: "https://www.eslfast.com/easydialogs/restaurant.htm" },
+      { t: "Cambridge Dictionary（音标与发音参考）", u: "https://dictionary.cambridge.org/" }
+    ]
+  },
+  {
+    id: "restaurant",
+    cat: "daily",
+    icon: "🍽️",
+    level: "B1",
+    zh: "餐厅用餐",
+    en: "Dining at a Restaurant",
+    roles: [
+      { en: "Waiter", zh: "服务员" },
+      { en: "Diner", zh: "顾客" }
+    ],
+    setting: "你提前订了晚上 7 点两个人的位子。到店后被带到桌边，需要点饮料、前菜和主菜；朋友对坚果过敏，你想确认菜品是否安全，最后结账并决定是否给小费。",
+    goal: "完成一次完整用餐对话：确认预订 → 点饮料与前菜 → 说明忌口或过敏 → 询问推荐 → 结账（AA 或请客）。",
+    canDo: [
+      "用英文订位、报人数与时间",
+      "看懂菜单结构：starter / main / side / dessert",
+      "说明过敏与饮食限制（I'm allergic to nuts.）",
+      "询问推荐与招牌菜（What would you recommend?）",
+      "礼貌地换菜、要打包盒、结账、AA、给小费"
+    ],
+    tips: [
+      "英式说 bill，美式说 check；AA 可说 “Could we split the bill?” 或 “Could we pay separately?”",
+      "牛排熟度：rare → medium rare → medium → medium well → well done，不要说 half cooked。",
+      "过敏一定要明确说 “I'm allergic to…”，不要只说 “I don't like…”，店员会据此通知厨房。",
+      "美国餐厅小费通常 15–20%；英国不少餐厅已加 service charge，先看账单再决定。",
+      "服务员问 “Are you ready to order?”，没想好就说 “Could we have a few more minutes, please?”"
+    ],
+    vocab: [
+      { en: "reservation", ipa: "/ˌrezəˈveɪʃn/", pos: "n.", zh: "预订", ex: "I have a reservation under Li.", exZh: "我用李这个名字订了位。" },
+      { en: "starter", ipa: "/ˈstɑːtə/", pos: "n.", zh: "前菜（美式 appetizer）", ex: "We'll share a starter.", exZh: "我们合吃一份前菜。" },
+      { en: "main course", ipa: "/ˌmeɪn ˈkɔːs/", pos: "n.", zh: "主菜", ex: "What's the main course?", exZh: "主菜是什么？" },
+      { en: "house special", ipa: "/ˌhaʊs ˈspeʃl/", pos: "n.", zh: "招牌菜", ex: "Is this the house special?", exZh: "这是招牌菜吗？" },
+      { en: "vegetarian", ipa: "/ˌvedʒəˈteəriən/", pos: "adj./n.", zh: "素食的；素食者", ex: "Do you have vegetarian options?", exZh: "有素食选择吗？" },
+      { en: "allergy", ipa: "/ˈælədʒi/", pos: "n.", zh: "过敏", ex: "He has a nut allergy.", exZh: "他对坚果过敏。" },
+      { en: "medium rare", ipa: "/ˌmiːdiəm ˈreə/", pos: "adj.", zh: "三分熟（牛排）", ex: "I'd like my steak medium rare.", exZh: "我的牛排要三分熟。" },
+      { en: "side dish", ipa: "/ˈsaɪd dɪʃ/", pos: "n.", zh: "配菜", ex: "Would you like a side dish?", exZh: "需要配菜吗？" },
+      { en: "bill", ipa: "/bɪl/", pos: "n.", zh: "账单（英式；美式 check）", ex: "Could we have the bill, please?", exZh: "可以结账吗？" },
+      { en: "split the bill", ipa: "/ˌsplɪt ðə ˈbɪl/", pos: "phr.", zh: "平摊账单", ex: "Could we split the bill?", exZh: "可以分开付吗？" },
+      { en: "tip", ipa: "/tɪp/", pos: "n./v.", zh: "小费；给小费", ex: "Is the tip included?", exZh: "小费包含在内吗？" },
+      { en: "takeaway box", ipa: "/ˈteɪkəweɪ bɒks/", pos: "n.", zh: "打包盒（美式 to-go box）", ex: "Could I have a takeaway box?", exZh: "可以给我一个打包盒吗？" }
+    ],
+    phrases: [
+      {
+        fn: "预订与入座", en: "Booking",
+        items: [
+          { en: "I'd like to book a table for two at seven, please.", zh: "我想订一张七点的两人桌。" },
+          { en: "We have a reservation under Wang.", zh: "我们用王的名字订了位。" },
+          { en: "Could we sit by the window?", zh: "可以坐在窗边吗？" }
+        ]
+      },
+      {
+        fn: "点菜", en: "Ordering",
+        items: [
+          { en: "Could we have a few more minutes, please?", zh: "可以再给我们几分钟吗？" },
+          { en: "I'll have the steak, please.", zh: "我要牛排。" },
+          { en: "What would you recommend?", zh: "你有什么推荐？" },
+          { en: "What's the soup of the day?", zh: "今日例汤是什么？" }
+        ]
+      },
+      {
+        fn: "忌口与过敏", en: "Dietary needs",
+        items: [
+          { en: "I'm allergic to nuts.", zh: "我对坚果过敏。" },
+          { en: "Does this dish contain dairy?", zh: "这道菜含乳制品吗？" },
+          { en: "Could I have it without cheese?", zh: "可以不加奶酪吗？" },
+          { en: "I'm vegetarian — are there any options?", zh: "我吃素，有什么可选的吗？" }
+        ]
+      },
+      {
+        fn: "用餐中", en: "During the meal",
+        items: [
+          { en: "Excuse me, I think this is the wrong dish.", zh: "不好意思，我觉得上错菜了。" },
+          { en: "Could we get some more water, please?", zh: "可以再给我们加点水吗？" },
+          { en: "This is a bit cold — could you heat it up?", zh: "这个有点凉了，可以加热一下吗？" }
+        ]
+      },
+      {
+        fn: "结账与小费", en: "Paying",
+        items: [
+          { en: "Could we have the bill, please?", zh: "可以结账吗？" },
+          { en: "Could we split the bill?", zh: "可以分开付吗？" },
+          { en: "Is service included?", zh: "服务费包含在内吗？" },
+          { en: "Can we pay by card?", zh: "可以刷卡吗？" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Good evening. Do you have a reservation?", zh: "晚上好，请问有预订吗？" },
+      { who: "B", en: "Yes, under Li — a table for two at seven.", zh: "有，姓李，七点两个人。" },
+      { who: "A", en: "Perfect. Right this way, please. Can I get you something to drink?", zh: "好的，这边请。想先来点喝的吗？" },
+      { who: "B", en: "Two sparkling waters, please. And could you give us a few more minutes?", zh: "两瓶气泡水。可以再给我们几分钟看菜单吗？" },
+      { who: "A", en: "Of course. Are you ready to order now?", zh: "当然。现在可以点菜了吗？" },
+      { who: "B", en: "Yes. I'll have the steak medium rare. Oh — my friend is allergic to nuts. Is the mushroom soup safe?", zh: "可以。我的牛排要三分熟。对了，我朋友对坚果过敏，蘑菇汤安全吗？" },
+      { who: "A", en: "Let me check with the kitchen. I'll be right back.", zh: "我去厨房确认一下，马上回来。" },
+      { who: "B", en: "Thank you. And could we also get a side salad to share?", zh: "谢谢。再要一份沙拉一起分享。" },
+      { who: "A", en: "Sure. So that's one steak, one mushroom soup — without nuts — and a side salad?", zh: "好的。一份牛排、一份不加坚果的蘑菇汤，还有一份沙拉，对吗？" },
+      { who: "B", en: "That's right. And could we have the bill at the end? We'll split it.", zh: "没错。最后可以结账吗？我们分开付。" },
+      { who: "A", en: "No problem at all. Enjoy your meal!", zh: "完全没问题。祝你们用餐愉快！" }
+    ],
+    mistakes: [
+      { wrong: "I want the steak.", right: "I'll have the steak, please.", note: "点菜常用 I'll have… / I'd like…，语气比 I want 委婉。" },
+      { wrong: "Can I pay the bill?", right: "Could we have the bill, please?", note: "pay the bill 是“付钱”这个动作；请服务员拿账单用 have the bill / check。" },
+      { wrong: "I want my steak half cooked.", right: "I'd like my steak medium rare.", note: "熟度要用 rare / medium / well done 这套说法，half cooked 会让人困惑。" },
+      { wrong: "I'm full — take the plate away.", right: "I'm done, thanks. Could I have a box, please?", note: "服务员会问 “Are you still working on that?”（还在吃吗？），别理解成“你在工作吗”。吃不完可以说 I'm done / Could I have a takeaway box?" }
+    ],
+    tasks: [
+      "角色扮演：订两人桌 → 点一份前菜和两份主菜 → 其中一人对乳制品过敏，向服务员确认 → 要打包盒并结账。",
+      "朋友觉得菜太咸，请你用礼貌英文向服务员说明并请求换菜。",
+      "挑战：三个人吃饭，账单 87 镑，其中一人只吃了前菜。用英文提出最合理的分摊方式。"
+    ],
+    quiz: [
+      {
+        q: "你想点牛排并要求三分熟，应说：",
+        options: ["I'd like my steak medium rare.", "I'd like my steak half cooked.", "I'd like my steak not too hot."],
+        a: 0,
+        why: "牛排熟度用 rare / medium rare / medium / medium well / well done 表达。"
+      },
+      {
+        q: "“我对坚果过敏”最准确的说法是：",
+        options: ["I don't like nuts.", "I'm allergic to nuts.", "I can't eat nuts because I'm full."],
+        a: 1,
+        why: "allergy 是过敏，涉及安全，必须说清楚；don't like 只是不喜欢。"
+      },
+      {
+        q: "想让服务员拿账单来，最自然的是：",
+        options: ["Give me the bill.", "Could we have the bill, please?", "I want to pay money now."],
+        a: 1,
+        why: "Could we have the bill, please? 是餐厅结账最常用的礼貌说法。"
+      }
+    ],
+    realWorld: [
+      { fact: "英国餐饮场所必须提供 14 类过敏原信息（含坚果、乳制品、麸质等）；说 I'm allergic to… 是餐厅会认真处理的请求。", t: "Food Standards Agency · Allergen guidance", u: "https://www.food.gov.uk/business-guidance/allergen-guidance-for-food-businesses" },
+      { fact: "过敏原信息可以书面或口头提供，点餐时主动说明并确认菜品，是英国用餐的常规做法。", t: "Food Standards Agency · Allergen guidance", u: "https://www.food.gov.uk/business-guidance/allergen-guidance-for-food-businesses" },
+    ],
+    models: [
+      "I'd like to book a table for two at seven, please. For starters, we'll share the soup. I'll have the steak medium rare, and my friend is allergic to dairy — could you check the mushroom soup? And could we get a box for the leftovers, please? We'll split the bill.",
+      "Excuse me, sorry to bother you — the steak is a bit too salty for me. Would it be possible to change it for something else?",
+      "The total is 87 pounds. Two of us had a main course and a dessert, and one only had a starter — could we just pay for what we each ordered?",
+    ],
+    sources: [
+      { t: "ESL Fast · Easy Conversations: Eating Out", u: "https://www.eslfast.com/easydialogs/restaurant.htm" },
+      { t: "Cambridge Dictionary（音标与发音参考）", u: "https://dictionary.cambridge.org/" }
+    ]
+  },
+  {
+    id: "shopping",
+    cat: "daily",
+    icon: "🛍️",
+    level: "B1",
+    zh: "购物与退换",
+    en: "Shopping & Returns",
+    roles: [
+      { en: "Shop assistant", zh: "店员" },
+      { en: "Customer", zh: "顾客" }
+    ],
+    setting: "你在商场服装店看中一件夹克，想试穿并确认尺码；回家后发现拉链有问题，于是带着收据回店要求退换。",
+    goal: "完成一次购物：询问尺码与库存 → 试穿 → 比较选择 → 付款；再完成一次退换：说明问题、出示收据、要求退款或换货。",
+    canDo: [
+      "询问商品位置、尺码、颜色和库存",
+      "试穿并描述合不合身（tight / loose / just right）",
+      "询问折扣、付款方式与退货政策",
+      "说明商品问题并要求退款或换货",
+      "听懂店员提出的解决方案（exchange / refund / store credit）"
+    ],
+    tips: [
+      "试穿说 try it on，不是 try it；试衣间叫 fitting room 或 changing room。",
+      "退货不要加 back：return 本身就是“退回”，return back 是多余重复。",
+      "non-refundable 不可退款；exchange only 只换不退；store credit 是店内消费额度。",
+      "英国标价含税；美国标价常不含税，结账时会另加 sales tax。",
+      "想确认能否砍价，可以问 “Do you price match?”（是否与别家同价），但商场通常不讲价。"
+    ],
+    vocab: [
+      { en: "try on", ipa: "/ˌtraɪ ˈɒn/", pos: "phr.", zh: "试穿", ex: "Could I try this on?", exZh: "我可以试穿这件吗？" },
+      { en: "fitting room", ipa: "/ˈfɪtɪŋ ruːm/", pos: "n.", zh: "试衣间", ex: "The fitting rooms are over there.", exZh: "试衣间在那边。" },
+      { en: "in stock", ipa: "/ˌɪn ˈstɒk/", pos: "phr.", zh: "有现货（反义 out of stock 缺货）", ex: "Is it in stock in a medium?", exZh: "中码有现货吗？" },
+      { en: "on sale", ipa: "/ˌɒn ˈseɪl/", pos: "phr.", zh: "打折促销", ex: "Is this jacket on sale?", exZh: "这件夹克打折吗？" },
+      { en: "receipt", ipa: "/rɪˈsiːt/", pos: "n.", zh: "收据", ex: "Do you have the receipt?", exZh: "你有收据吗？" },
+      { en: "refund", ipa: "/ˈriːfʌnd/", pos: "n./v.", zh: "退款", ex: "I'd like a refund, please.", exZh: "我想退款。" },
+      { en: "exchange", ipa: "/ɪksˈtʃeɪndʒ/", pos: "n./v.", zh: "换货", ex: "Could I exchange it for a larger size?", exZh: "可以换大一号吗？" },
+      { en: "return policy", ipa: "/rɪˈtɜːn ˌpɒləsi/", pos: "n.", zh: "退货政策", ex: "What's your return policy?", exZh: "你们的退货政策是什么？" },
+      { en: "warranty", ipa: "/ˈwɒrənti/", pos: "n.", zh: "保修", ex: "It's still under warranty.", exZh: "还在保修期内。" },
+      { en: "contactless", ipa: "/ˈkɒntæktləs/", pos: "adj.", zh: "非接触式支付的", ex: "Can I pay contactless?", exZh: "可以拍卡支付吗？" },
+      { en: "queue", ipa: "/kjuː/", pos: "n.", zh: "队伍（英式；美式 line）", ex: "There's a long queue at the till.", exZh: "收银台排了长队。" }
+    ],
+    phrases: [
+      {
+        fn: "找商品与尺码", en: "Finding items",
+        items: [
+          { en: "Excuse me, do you have this in a medium?", zh: "请问这件有中码吗？" },
+          { en: "Where can I find the jackets?", zh: "夹克在哪个区域？" },
+          { en: "Is this the only colour?", zh: "只有这个颜色吗？" },
+          { en: "Is it in stock online?", zh: "网上有货吗？" }
+        ]
+      },
+      {
+        fn: "试穿与评价", en: "Trying on",
+        items: [
+          { en: "Could I try this on?", zh: "我可以试穿这件吗？" },
+          { en: "Where's the fitting room?", zh: "试衣间在哪里？" },
+          { en: "It's a bit tight — do you have the next size up?", zh: "有点紧，有大一号的吗？" },
+          { en: "It fits well. I'll take it.", zh: "很合身，我买了。" }
+        ]
+      },
+      {
+        fn: "折扣与付款", en: "Discounts & payment",
+        items: [
+          { en: "Is this on sale?", zh: "这个打折吗？" },
+          { en: "Do you offer student discount?", zh: "有学生折扣吗？" },
+          { en: "Can I pay by card?", zh: "可以刷卡吗？" },
+          { en: "Could I have a receipt, please?", zh: "可以给我一张收据吗？" }
+        ]
+      },
+      {
+        fn: "退换货", en: "Returns & exchanges",
+        items: [
+          { en: "I'd like to return this, please.", zh: "我想退这个。" },
+          { en: "It's faulty — the zip is broken.", zh: "它有质量问题，拉链坏了。" },
+          { en: "Could I exchange it for a larger size?", zh: "可以换大一号吗？" },
+          { en: "Could I have a refund, please?", zh: "可以退款吗？" },
+          { en: "What's your return policy?", zh: "你们的退货政策是什么？" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Hi there, can I help you with anything?", zh: "你好，需要帮忙吗？" },
+      { who: "B", en: "Yes, please. I'm looking for this jacket in a medium.", zh: "是的。我在找这件夹克的中码。" },
+      { who: "A", en: "Let me check… We have it in navy and beige. Which would you like?", zh: "我查一下……有藏青色和米色，您要哪个？" },
+      { who: "B", en: "Navy, please. Could I try it on?", zh: "藏青色。可以试穿吗？" },
+      { who: "A", en: "Of course. The fitting rooms are just behind you.", zh: "当然，试衣间就在您后面。" },
+      { who: "B", en: "Thanks. Hmm, it's a bit tight around the shoulders. Do you have the next size up?", zh: "谢谢。嗯，肩膀有点紧，有大一号的吗？" },
+      { who: "A", en: "Let me see… Yes, here's a large. How does that feel?", zh: "我看看……有，这是大码。感觉怎么样？" },
+      { who: "B", en: "Much better. I'll take it. Is it on sale?", zh: "好多了，我买了。这件打折吗？" },
+      { who: "A", en: "It's 20% off today. That'll be 64 pounds. Would you like a bag?", zh: "今天八折，一共 64 镑。需要袋子吗？" },
+      { who: "B", en: "No bag, thanks. But could I have a receipt? Just in case.", zh: "不用袋子，谢谢。不过可以给我一张收据吗？以防万一。" },
+      { who: "A", en: "Of course. Keep it — you have 30 days to return it.", zh: "当然。请保留好，30 天内可以退换。" }
+    ],
+    mistakes: [
+      { wrong: "I want to return back this jacket.", right: "I'd like to return this jacket.", note: "return 已经包含“退回”的意思，return back 是重复表达。" },
+      { wrong: "Can I try it?", right: "Can I try it on?", note: "衣服、鞋子要试穿，动词短语必须是 try on。" },
+      { wrong: "Can I change it to another size?", right: "Could I exchange it for another size?", note: "换货用 exchange A for B；change 更常指“改变”。" },
+      { wrong: "How much?", right: "How much is it?", note: "单独说 How much? 不完整，问价格要说 How much is it / is this?" }
+    ],
+    tasks: [
+      "角色扮演：买一件夹克 → 试穿后尺码不合适 → 询问有无限大码 → 付款并要收据。",
+      "你的耳机用了两周就坏了，带着收据回店要求换货；店员说只能退款，请确认退款方式和到账时间。",
+      "挑战：店员说 “It's final sale — no returns.”，用礼貌英文询问是否还有别的解决办法。"
+    ],
+    quiz: [
+      {
+        q: "你想试穿一件衣服，应说：",
+        options: ["Can I try it?", "Can I try it on?", "Can I test it?"],
+        a: 1,
+        why: "试穿衣服、鞋子用 try on；try 单独用是“尝试”。"
+      },
+      {
+        q: "“我想退款”最自然的是：",
+        options: ["I want my money back now.", "I'd like a refund, please.", "Give me the money."],
+        a: 1,
+        why: "I'd like a refund, please. 是商店里最常用、最礼貌的退款说法。"
+      },
+      {
+        q: "店员说 “It's faulty.”，意思是：",
+        options: ["它打折了。", "它有质量问题。", "它卖完了。"],
+        a: 1,
+        why: "faulty 表示“有缺陷、有故障”，是退换货时的关键理由。"
+      }
+    ],
+    realWorld: [
+      { fact: "英国：商品有质量问题，消费者在 30 天内有权拒收（right to reject）并要求全额退款。", t: "GOV.UK · Consumer protection rights", u: "https://www.gov.uk/consumer-protection-rights" },
+      { fact: "网购、邮购和电话订单有 14 天冷静期，可无理由取消并退货（定制、生鲜、已拆封音像制品等除外）。", t: "GOV.UK · Accepting returns and giving refunds", u: "https://www.gov.uk/accepting-returns-and-giving-refunds" },
+    ],
+    models: [
+      "Excuse me, do you have this jacket in a medium? Could I try it on? It's a bit tight — do you have the next size up? I'll take the large. Could I have a receipt, please?",
+      "Hi, I bought these earphones two weeks ago and they've stopped working. Here's the receipt. I'd like to exchange them — or if that's not possible, a refund. How long will the refund take?",
+      "I understand it's final sale, but the item is faulty — the zip broke the first time I used it. Could you check whether it can be repaired or replaced?",
+    ],
+    sources: [
+      { t: "British Council English Online · English for online shopping", u: "https://englishonline.britishcouncil.org/blog/articles/english-for-online-shopping-phrases-and-vocabulary-you-need-to-know/" },
+      { t: "ESL Fast · Easy Conversations: Shopping", u: "https://www.eslfast.com/easydialogs/shopping.htm" }
+    ]
+  },
+  {
+    id: "directions",
+    cat: "daily",
+    icon: "🧭",
+    level: "A2",
+    zh: "问路与交通",
+    en: "Asking for Directions & Getting Around",
+    roles: [
+      { en: "Lost tourist", zh: "迷路的游客" },
+      { en: "Local passer-by", zh: "当地路人" }
+    ],
+    setting: "你在陌生城市找一家博物馆，手机刚好没电。你向路人问路，然后去地铁站买票、确认线路和换乘，最后找到正确站台。",
+    goal: "问清路线 → 听懂指路并复述确认 → 买到正确车票 → 找到站台并确认方向。",
+    canDo: [
+      "礼貌开场并说明自己迷路了",
+      "询问路线、距离和所需时间",
+      "听懂指路并复述确认（So, straight on, then left at the lights?）",
+      "买票、问站台、问是否换乘",
+      "确认方向，听不懂时请对方重复或说慢一点"
+    ],
+    tips: [
+      "走路说 on foot 或直接说 walk；不要说 “go by foot”。",
+      "指路常用地标：at the traffic lights, past the bank, opposite the station, next to…",
+      "英国地铁叫 the Tube / the Underground，美国叫 the subway，欧洲多叫 the metro。",
+      "单程票英式 single、美式 one-way；往返票英式 return、美式 round trip。",
+      "问“多远”用 “How far is it?”；问“走路要多久”用 “How long does it take on foot?”"
+    ],
+    vocab: [
+      { en: "go straight", ipa: "/ˌɡəʊ ˈstreɪt/", pos: "phr.", zh: "直走", ex: "Go straight for two blocks.", exZh: "直走两个街区。" },
+      { en: "traffic lights", ipa: "/ˈtræfɪk laɪts/", pos: "n.", zh: "红绿灯", ex: "Turn left at the traffic lights.", exZh: "在红绿灯处左转。" },
+      { en: "roundabout", ipa: "/ˈraʊndəbaʊt/", pos: "n.", zh: "环岛（美式 traffic circle）", ex: "Take the second exit at the roundabout.", exZh: "在环岛走第二个出口。" },
+      { en: "crossroads", ipa: "/ˈkrɒsrəʊdz/", pos: "n.", zh: "十字路口", ex: "It's just past the crossroads.", exZh: "就在十字路口过去一点。" },
+      { en: "within walking distance", ipa: "/wɪˌðɪn ˈwɔːkɪŋ ˌdɪstəns/", pos: "phr.", zh: "步行可达", ex: "The museum is within walking distance.", exZh: "博物馆走路就能到。" },
+      { en: "landmark", ipa: "/ˈlændmɑːk/", pos: "n.", zh: "地标", ex: "The clock tower is a good landmark.", exZh: "钟楼是个好找的地标。" },
+      { en: "platform", ipa: "/ˈplætfɔːm/", pos: "n.", zh: "站台", ex: "Which platform is it from?", exZh: "从哪个站台出发？" },
+      { en: "single", ipa: "/ˈsɪŋɡl/", pos: "n.", zh: "单程票（英式；美式 one-way）", ex: "A single to the museum, please.", exZh: "一张到博物馆的单程票。" },
+      { en: "return", ipa: "/rɪˈtɜːn/", pos: "n.", zh: "往返票（英式；美式 round trip）", ex: "A return ticket, please.", exZh: "一张往返票。" },
+      { en: "transfer", ipa: "/ˈtrænsfɜː/", pos: "n./v.", zh: "换乘", ex: "You need to transfer at the next station.", exZh: "你需要在下一站换乘。" },
+      { en: "get off", ipa: "/ˌɡet ˈɒf/", pos: "phr.", zh: "下车", ex: "Get off at Green Park.", exZh: "在格林公园下车。" }
+    ],
+    phrases: [
+      {
+        fn: "礼貌开场", en: "Opening politely",
+        items: [
+          { en: "Excuse me, sorry to bother you.", zh: "打扰一下，不好意思。" },
+          { en: "Could you help me? I'm looking for the City Museum.", zh: "能帮我一下吗？我在找市立博物馆。" },
+          { en: "I'm a bit lost — do you know how to get there?", zh: "我有点迷路，你知道怎么去吗？" }
+        ]
+      },
+      {
+        fn: "问路线", en: "Asking the way",
+        items: [
+          { en: "How do I get to the museum?", zh: "去博物馆怎么走？" },
+          { en: "Is it far from here?", zh: "离这里远吗？" },
+          { en: "How long does it take on foot?", zh: "走路要多久？" },
+          { en: "Should I take the bus or the metro?", zh: "我该坐公交还是地铁？" }
+        ]
+      },
+      {
+        fn: "听懂与确认", en: "Checking understanding",
+        items: [
+          { en: "Sorry, could you say that again?", zh: "抱歉，可以再说一遍吗？" },
+          { en: "So, straight on and then left at the lights?", zh: "所以是直走，然后在红绿灯处左转？" },
+          { en: "Is it on this side of the street?", zh: "在马路这一侧吗？" },
+          { en: "Thanks, that's really helpful.", zh: "谢谢，太有帮助了。" }
+        ]
+      },
+      {
+        fn: "买票与乘车", en: "Tickets & transport",
+        items: [
+          { en: "A single to the museum, please.", zh: "一张到博物馆的单程票。" },
+          { en: "Which platform does it leave from?", zh: "从哪个站台出发？" },
+          { en: "Do I need to change lines?", zh: "需要换乘吗？" },
+          { en: "Where do I get off?", zh: "我在哪一站下车？" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Excuse me — sorry to bother you. I'm looking for the City Museum. Am I going the right way?", zh: "打扰一下，抱歉麻烦你。我在找市立博物馆，这个方向对吗？" },
+      { who: "B", en: "You're going the wrong way, I'm afraid. It's about a ten-minute walk from here.", zh: "恐怕你走反了，从这里走路大概十分钟。" },
+      { who: "A", en: "Oh dear. How do I get there?", zh: "哎呀。那怎么走呢？" },
+      { who: "B", en: "Go straight along this road, then turn left at the second traffic lights. It's opposite the library.", zh: "沿这条路直走，在第二个红绿灯处左转，就在图书馆对面。" },
+      { who: "A", en: "Sorry, could you say that again a bit more slowly? Straight on, then left at the second lights, opposite the library?", zh: "抱歉，可以慢一点再说一遍吗？直走，然后在第二个红绿灯左转，在图书馆对面？" },
+      { who: "B", en: "That's right. You can't miss it — there's a big clock tower in front.", zh: "没错。很好找的，前面有个大钟楼。" },
+      { who: "A", en: "Thanks so much. And is there a metro station near here?", zh: "太感谢了。这附近有地铁站吗？" },
+      { who: "B", en: "Yes, just around the corner. The entrance is next to the bank.", zh: "有，就在拐角处。入口在银行旁边。" },
+      { who: "A", en: "Great. So I'd take the metro — which line goes to the museum?", zh: "太好了。那我坐地铁的话，哪条线到博物馆？" },
+      { who: "B", en: "Take the blue line and get off at Central. It's two stops. You'll need to buy a single from the machine.", zh: "坐蓝线，在 Central 下车，只有两站。你需要在机器上买一张单程票。" },
+      { who: "A", en: "Perfect. Thanks again — you've been really helpful!", zh: "太好了。再次感谢，你帮了大忙！" }
+    ],
+    mistakes: [
+      { wrong: "How to go to the station?", right: "How do I get to the station?", note: "问路用 How do I get to…?；How to…? 更像书面标题，不是完整问句。" },
+      { wrong: "Go straightly.", right: "Go straight.", note: "straight 本身就是副词，没有 straightly 这种说法。" },
+      { wrong: "Take the bus to there.", right: "Take the bus there. / Get there by bus.", note: "there 是副词，前面不加 to。" },
+      { wrong: "It's on the left side of me.", right: "It's on my left.", note: "说方位用 on my left / on your right，不用 of me。" }
+    ],
+    tasks: [
+      "角色扮演：向路人问去最近的地铁站怎么走，并复述一遍确认听懂。",
+      "用英文向没来过你学校/公司的朋友描述一条路线（从最近地铁站到门口）。",
+      "挑战：路人语速很快，你只听懂了一半。用英文礼貌地请对方说慢一点并重复关键信息。"
+    ],
+    quiz: [
+      {
+        q: "“走路要多久？”最自然的问法是：",
+        options: ["How long on foot?", "How long does it take on foot?", "How much time walking?"],
+        a: 1,
+        why: "How long does it take on foot? 是最常用的问法。"
+      },
+      {
+        q: "英国人说 “a single ticket”，意思是：",
+        options: ["一张单程票", "一张单人票", "一张单座票"],
+        a: 0,
+        why: "single 是英式“单程票”，往返票是 return。"
+      },
+      {
+        q: "没听清对方的指路，最礼貌的请求是：",
+        options: ["Repeat!", "Sorry, could you say that again?", "What?"],
+        a: 1,
+        why: "Could you say that again? 比 Repeat! / What? 礼貌得多。"
+      }
+    ],
+    realWorld: [
+      { fact: "伦敦地铁、公交和电车可直接刷 contactless 银行卡或 Oyster 卡，系统按天/周自动封顶（daily / weekly cap），通常比买单程票划算。", t: "TfL · Visitor Oyster card", u: "https://tfl.gov.uk/travel-information/visiting-london/visitor-oyster-card" },
+      { fact: "伦敦公交车不收现金，需上车前用 contactless 或 Oyster 卡付款；坐错方向时下车到对面站台即可。", t: "TfL · Buses", u: "https://tfl.gov.uk/modes/buses/" },
+    ],
+    models: [
+      "Excuse me, sorry to bother you — could you tell me how to get to the nearest metro station? ... So, straight on, then left at the second lights? Thank you!",
+      "From the station, go straight along Main Street, turn right at the traffic lights, and it's the building opposite the bank — about five minutes on foot.",
+      "Sorry, I didn't quite catch that. Could you say it again a bit more slowly? So I go straight, then turn left — is that right?",
+    ],
+    sources: [
+      { t: "ESL Fast · Easy Conversations: Transportation", u: "https://www.eslfast.com/easydialogs/transportation.htm" },
+      { t: "Cambridge Dictionary（音标与发音参考）", u: "https://dictionary.cambridge.org/" }
+    ]
+  },
+  {
+    id: "doctor",
+    cat: "daily",
+    icon: "🏥",
+    level: "B1",
+    zh: "就医与药店",
+    en: "At the Doctor's & Pharmacy",
+    roles: [
+      { en: "Doctor", zh: "医生" },
+      { en: "Patient", zh: "患者" }
+    ],
+    setting: "你旅行时喉咙痛、发烧两天了，去诊所看医生。医生问诊后开了处方，你去药店取药并询问用法和注意事项。",
+    goal: "说清症状与持续时间 → 听懂医生提问 → 拿到处方后问清剂量与注意事项 → 必要时知道如何改约复诊。",
+    canDo: [
+      "预约或挂号，报姓名与时间",
+      "描述症状、疼痛位置与持续时间",
+      "说明过敏史与正在服用的药物",
+      "听懂医嘱（Take one tablet twice a day after meals.）",
+      "在药店取药、问副作用和用法"
+    ],
+    tips: [
+      "“我头疼”说 I have a headache，比 I have a pain in my head 自然。",
+      "描述疼痛可用 “It hurts when I swallow.” / “It's a sharp pain.”",
+      "英国常见 GP（家庭医生）与 A&E（急诊）；美国是 doctor's office 与 ER。",
+      "“我病了三天”要用现在完成时：I've been ill for three days.",
+      "问“这个药需要处方吗？”说 “Is this available over the counter?”"
+    ],
+    vocab: [
+      { en: "symptom", ipa: "/ˈsɪmptəm/", pos: "n.", zh: "症状", ex: "What are your symptoms?", exZh: "你有什么症状？" },
+      { en: "sore throat", ipa: "/ˌsɔː ˈθrəʊt/", pos: "n.", zh: "喉咙痛", ex: "I've had a sore throat for two days.", exZh: "我喉咙痛两天了。" },
+      { en: "fever", ipa: "/ˈfiːvə/", pos: "n.", zh: "发烧", ex: "I have a fever.", exZh: "我发烧了。" },
+      { en: "cough", ipa: "/kɒf/", pos: "n./v.", zh: "咳嗽", ex: "I have a dry cough.", exZh: "我干咳。" },
+      { en: "prescription", ipa: "/prɪˈskrɪpʃn/", pos: "n.", zh: "处方", ex: "You need a prescription for this.", exZh: "这个需要处方。" },
+      { en: "pharmacist", ipa: "/ˈfɑːməsɪst/", pos: "n.", zh: "药剂师", ex: "Ask the pharmacist for advice.", exZh: "可以向药剂师咨询。" },
+      { en: "over-the-counter", ipa: "/ˌəʊvə ðə ˈkaʊntə/", pos: "adj.", zh: "非处方药（OTC）", ex: "It's available over the counter.", exZh: "这个不用处方就能买。" },
+      { en: "dose", ipa: "/dəʊs/", pos: "n.", zh: "剂量", ex: "What's the dose for adults?", exZh: "成人剂量是多少？" },
+      { en: "side effect", ipa: "/ˈsaɪd ɪfekt/", pos: "n.", zh: "副作用", ex: "Are there any side effects?", exZh: "有副作用吗？" },
+      { en: "appointment", ipa: "/əˈpɔɪntmənt/", pos: "n.", zh: "预约", ex: "I have an appointment at ten.", exZh: "我约了十点。" },
+      { en: "painkiller", ipa: "/ˈpeɪnkɪlə/", pos: "n.", zh: "止痛药", ex: "Could you recommend a painkiller?", exZh: "可以推荐一种止痛药吗？" }
+    ],
+    phrases: [
+      {
+        fn: "预约与挂号", en: "Booking",
+        items: [
+          { en: "I'd like to make an appointment, please.", zh: "我想预约。" },
+          { en: "I have an appointment at ten.", zh: "我约了十点。" },
+          { en: "Is it possible to see a doctor today?", zh: "今天能看医生吗？" }
+        ]
+      },
+      {
+        fn: "描述症状", en: "Describing symptoms",
+        items: [
+          { en: "I've had a sore throat for two days.", zh: "我喉咙痛两天了。" },
+          { en: "I have a fever and a headache.", zh: "我发烧、头疼。" },
+          { en: "It hurts when I swallow.", zh: "我咽东西的时候疼。" },
+          { en: "I'm allergic to penicillin.", zh: "我对青霉素过敏。" }
+        ]
+      },
+      {
+        fn: "医生常见提问", en: "Doctor's questions",
+        items: [
+          { en: "How long have you had these symptoms?", zh: "这些症状多久了？" },
+          { en: "Any other symptoms?", zh: "还有其他症状吗？" },
+          { en: "Are you taking any medication?", zh: "你正在吃什么药吗？" },
+          { en: "Does it hurt here?", zh: "这里疼吗？" }
+        ]
+      },
+      {
+        fn: "医嘱与药店", en: "Treatment & pharmacy",
+        items: [
+          { en: "Take one tablet twice a day after meals.", zh: "每天两次，每次一片，饭后服用。" },
+          { en: "Do I need a prescription?", zh: "这个需要处方吗？" },
+          { en: "Are there any side effects?", zh: "有副作用吗？" },
+          { en: "How often should I take it?", zh: "多久吃一次？" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Good morning. What seems to be the problem?", zh: "早上好，哪里不舒服？" },
+      { who: "B", en: "I have a sore throat and a fever. It started two days ago.", zh: "我喉咙痛、发烧，两天前开始的。" },
+      { who: "A", en: "I see. Any cough or headache?", zh: "知道了。有咳嗽或头疼吗？" },
+      { who: "B", en: "A bit of a headache, yes. And it hurts when I swallow.", zh: "有一点头疼。咽东西的时候也疼。" },
+      { who: "A", en: "Let me have a look at your throat. Are you allergic to any medication?", zh: "我看一下你的喉咙。你对什么药过敏吗？" },
+      { who: "B", en: "I'm allergic to penicillin.", zh: "我对青霉素过敏。" },
+      { who: "A", en: "Thanks for telling me. It looks like a throat infection. I'll prescribe some antibiotics. Take one tablet twice a day after meals.", zh: "谢谢告知。看起来是喉咙感染，我给你开点抗生素。每天两次，每次一片，饭后吃。" },
+      { who: "B", en: "Got it. Are there any side effects I should know about?", zh: "明白了。有什么副作用需要注意的吗？" },
+      { who: "A", en: "You might feel a little sick at first. If you get a rash, stop taking them and come back.", zh: "刚开始可能会有点恶心。如果起疹子，就停药并回来复诊。" },
+      { who: "B", en: "Thank you. And could I get a doctor's note for my insurance?", zh: "谢谢。可以给我开一张保险用的医生证明吗？" },
+      { who: "A", en: "Of course. I'll have it ready at reception in ten minutes.", zh: "当然，十分钟后到前台取。" }
+    ],
+    mistakes: [
+      { wrong: "I am sick for three days.", right: "I've been sick for three days.", note: "持续到现在的状态要用现在完成时；for + 一段时间表示持续。" },
+      { wrong: "I have a pain in my head.", right: "I have a headache.", note: "头疼有固定说法 headache；pain in my head 听起来很奇怪。" },
+      { wrong: "I eat medicine every day.", right: "I take medicine every day.", note: "吃药是 take medicine，不是 eat medicine。" },
+      { wrong: "I have fever 38 degrees.", right: "I have a temperature of 38 degrees.", note: "fever 前要加 a；说具体温度用 have a temperature of…。" }
+    ],
+    tasks: [
+      "角色扮演：向医生描述三个症状（喉咙痛、发烧、头疼）并说明持续两天。",
+      "打电话到诊所预约：说明姓名、症状，并问最快什么时候能看。",
+      "挑战：在药店，药剂师说 “This one makes you sleepy.”，请用英文确认能否在白天服用、以及和食物有无冲突。"
+    ],
+    quiz: [
+      {
+        q: "“我喉咙痛两天了”最自然的是：",
+        options: ["I have sore throat for two days.", "I've had a sore throat for two days.", "My throat is pain since two days."],
+        a: 1,
+        why: "持续到现在的症状用现在完成时 have had；sore throat 前加 a。"
+      },
+      {
+        q: "“这药需要处方吗？”应问：",
+        options: ["Do I need a prescription for this?", "Can I eat this medicine?", "Is this a hospital?"],
+        a: 0,
+        why: "prescription 是处方；非处方药叫 over-the-counter (OTC)。"
+      },
+      {
+        q: "医生说 “Take one tablet twice a day after meals”，意思是：",
+        options: ["每天一片，饭前吃", "每天两次，每次一片，饭后吃", "一次两片，睡前吃"],
+        a: 1,
+        why: "twice a day = 每天两次；one tablet = 一片；after meals = 饭后。"
+      }
+    ],
+    realWorld: [
+      { fact: "英国（英格兰）非紧急医疗咨询可拨 111，危及生命才拨 999；看专科通常需要 GP 转诊。", t: "NHS · When to use NHS 111", u: "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/" },
+      { fact: "药剂师可以处理许多小病（感冒、过敏、轻微感染等），不一定要去诊所排队。", t: "NHS · NHS pharmacies", u: "https://www.nhs.uk/nhs-services/pharmacies/" },
+    ],
+    models: [
+      "I've had a sore throat and a headache for two days, and I have a fever. It hurts when I swallow.",
+      "Hello, I'd like to make an appointment, please. I've had a sore throat and a fever for two days. Is there anything available today?",
+      "The pharmacist said this one makes you sleepy — is it okay to take during the day, and should I avoid driving after taking it?",
+    ],
+    sources: [
+      { t: "ESL Fast · Easy Conversations: Health", u: "https://www.eslfast.com/easydialogs/health.htm" },
+      { t: "Cambridge Dictionary（音标与发音参考）", u: "https://dictionary.cambridge.org/" }
+    ]
+  },
+  {
+    id: "smalltalk",
+    cat: "daily",
+    icon: "🤝",
+    level: "B1",
+    zh: "社交闲聊",
+    en: "Small Talk & Making Friends",
+    roles: [
+      { en: "You", zh: "你" },
+      { en: "New acquaintance", zh: "新认识的朋友" }
+    ],
+    setting: "朋友在家办聚会，你被介绍给一位没见过面的人。你们要自然地开场、聊兴趣和周末计划、找到共同点，最后礼貌结束对话并交换联系方式。",
+    goal: "用 3 分钟完成一次自然闲聊：开场 → 追问 → 分享 → 结束；不冷场，也不冒犯别人。",
+    canDo: [
+      "用天气、周末、工作、爱好、旅行等安全话题开场",
+      "用追问句让对话继续（Really? How was that?）",
+      "表达共鸣与兴趣（That sounds fun. / Same here!）",
+      "礼貌地切换话题或结束对话",
+      "自然地交换联系方式"
+    ],
+    tips: [
+      "英语闲聊避免直接问年龄、收入、婚姻、体重、政治和宗教。",
+      "英美人常用“弱开场”：Lovely weather, isn't it? 期待对方接话，而不是要一个天气预报。",
+      "回答 How are you? 不要只说 Fine, thank you, and you?；试试 “Not bad, busy week — how about you?”",
+      "想结束对话，给个具体理由：I should go and grab some food / catch my train.",
+      "FORD 框架很好用：Family（泛泛聊）、Occupation、Recreation、Dreams。"
+    ],
+    vocab: [
+      { en: "small talk", ipa: "/ˈsmɔːl tɔːk/", pos: "n.", zh: "闲聊", ex: "I'm not great at small talk.", exZh: "我不太擅长闲聊。" },
+      { en: "break the ice", ipa: "/ˌbreɪk ði ˈaɪs/", pos: "phr.", zh: "打破僵局", ex: "He told a joke to break the ice.", exZh: "他讲了个笑话来活跃气氛。" },
+      { en: "catch up", ipa: "/ˌkætʃ ˈʌp/", pos: "phr.", zh: "叙旧；聊近况", ex: "Let's catch up soon.", exZh: "我们改天聊聊近况吧。" },
+      { en: "hang out", ipa: "/ˌhæŋ ˈaʊt/", pos: "phr.", zh: "一起消磨时间", ex: "We should hang out sometime.", exZh: "我们改天一起玩吧。" },
+      { en: "mutual friend", ipa: "/ˌmjuːtʃuəl ˈfrend/", pos: "n.", zh: "共同的朋友", ex: "We have a mutual friend, apparently.", exZh: "原来我们有个共同的朋友。" },
+      { en: "get on well", ipa: "/ˌɡet ɒn ˈwel/", pos: "phr.", zh: "合得来", ex: "We got on really well.", exZh: "我们很合得来。" },
+      { en: "keep in touch", ipa: "/ˌkiːp ɪn ˈtʌtʃ/", pos: "phr.", zh: "保持联系", ex: "Let's keep in touch.", exZh: "我们保持联系。" },
+      { en: "so-so", ipa: "/ˈsəʊ səʊ/", pos: "adj.", zh: "一般般", ex: "The film was so-so.", exZh: "那部电影一般。" },
+      { en: "networking", ipa: "/ˈnetwɜːkɪŋ/", pos: "n.", zh: "社交拓展人脉", ex: "The event was mainly for networking.", exZh: "这个活动主要是为了拓展人脉。" },
+      { en: "it's been a while", ipa: "/ɪts biːn ə ˈwaɪl/", pos: "phr.", zh: "好久不见", ex: "It's been a while — how have you been?", exZh: "好久不见，你最近怎么样？" }
+    ],
+    phrases: [
+      {
+        fn: "开场", en: "Opening",
+        items: [
+          { en: "I don't think we've met — I'm Alex.", zh: "我们好像没见过，我是 Alex。" },
+          { en: "How do you know Sam?", zh: "你怎么认识 Sam 的？" },
+          { en: "Lovely weather today, isn't it?", zh: "今天天气真好，是吧？" },
+          { en: "What brings you here?", zh: "你今天怎么来了？" }
+        ]
+      },
+      {
+        fn: "追问与回应", en: "Follow-ups",
+        items: [
+          { en: "Really? How did that go?", zh: "真的吗？后来怎么样？" },
+          { en: "That sounds fun.", zh: "听起来挺有意思的。" },
+          { en: "Tell me more about that.", zh: "多说说那个吧。" },
+          { en: "Same here!", zh: "我也是！" }
+        ]
+      },
+      {
+        fn: "分享自己", en: "Sharing",
+        items: [
+          { en: "I'm into photography at the moment.", zh: "我最近迷上摄影。" },
+          { en: "I've just started learning to cook.", zh: "我刚开始学做饭。" },
+          { en: "I've been meaning to try that.", zh: "我一直想试试那个。" }
+        ]
+      },
+      {
+        fn: "结束与联系", en: "Wrapping up",
+        items: [
+          { en: "It's been lovely chatting with you.", zh: "和你聊天很开心。" },
+          { en: "I should let you get back to it.", zh: "我就不打扰你了。" },
+          { en: "Let's catch up soon — are you on WeChat?", zh: "我们改天再聊，你有微信吗？" },
+          { en: "I'll drop you a message.", zh: "我会给你发消息。" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Hi! I don't think we've met — I'm Alex, Sam's colleague.", zh: "嗨！我们好像没见过，我是 Alex，Sam 的同事。" },
+      { who: "B", en: "Nice to meet you, Alex. I'm Mei — Sam and I used to work together.", zh: "很高兴认识你，Alex。我是 Mei，Sam 和我以前是同事。" },
+      { who: "A", en: "Ah, so you're the one who got him into climbing!", zh: "啊，原来就是你带他入坑攀岩的！" },
+      { who: "B", en: "Guilty! Do you climb too?", zh: "被发现了！你也攀岩吗？" },
+      { who: "A", en: "Not really, but I've been meaning to try it. Is it hard to start?", zh: "不太会，不过我一直想试试。入门难吗？" },
+      { who: "B", en: "Not at all. There's a great gym near the station — you should come along sometime.", zh: "一点都不难。车站附近有家很棒的攀岩馆，你改天可以一起来。" },
+      { who: "A", en: "That sounds fun. I'm usually free at weekends.", zh: "听起来不错，我周末一般有空。" },
+      { who: "B", en: "Perfect. Oh, I should go and say hi to Sam before he leaves. It's been lovely chatting with you.", zh: "太好了。哦，我得趁 Sam 走之前去打个招呼。和你聊天很开心。" },
+      { who: "A", en: "You too. Let's keep in touch — are you on WeChat?", zh: "我也是。保持联系，你有微信吗？" },
+      { who: "B", en: "Yes, here's my QR code. Message me and we'll sort out a climbing session.", zh: "有，这是我的二维码。给我发消息，我们约一次攀岩。" }
+    ],
+    mistakes: [
+      { wrong: "How much do you earn?", right: "What do you do?", note: "收入、年龄、婚姻在英语闲聊中属于隐私，初次见面别问。" },
+      { wrong: "I'm fine, thank you, and you?", right: "Pretty good, thanks — busy week! How about you?", note: "课本式回答会显得机械；加入一点真实信息，对话才容易继续。" },
+      { wrong: "What is your hobby?", right: "What do you do in your free time?", note: "hobby 单数提问听起来像面试；用复数或 do in your free time 更自然。" },
+      { wrong: "Please sit down.", right: "Have a seat. / Please, make yourself at home.", note: "在聚会上招呼别人坐下，Have a seat 更自然。" }
+    ],
+    tasks: [
+      "角色扮演：在聚会上用 FORD 框架和陌生人聊 3 分钟（Family / Occupation / Recreation / Dreams 各问一个问题）。",
+      "练习结尾：和对方聊完，用两句英文礼貌结束对话并交换联系方式。",
+      "挑战：对方说 “I've just got back from Japan.”，用三个追问句让对话继续。"
+    ],
+    quiz: [
+      {
+        q: "初次见面，哪个问题比较安全？",
+        options: ["How much do you earn?", "How do you know the host?", "Why aren't you married?"],
+        a: 1,
+        why: "收入、婚姻属于隐私话题；“你怎么认识主人的”是聚会标准安全开场。"
+      },
+      {
+        q: "想礼貌结束聊天，最自然的是：",
+        options: ["Bye, I'm leaving now.", "It's been lovely chatting with you — I should let you get back to it.", "Stop talking, please."],
+        a: 1,
+        why: "给出正面评价 + 一个体面的理由，是英语闲聊的标准收尾方式。"
+      },
+      {
+        q: "“我也一样！”最地道的说法是：",
+        options: ["Me too same.", "Same here!", "I am also."],
+        a: 1,
+        why: "Same here! 是口语中表达共鸣最常用的说法。"
+      }
+    ],
+    realWorld: [
+      { fact: "英语闲聊的安全话题：天气、周末安排、旅行、爱好。可以用 FORD 框架：Family、Occupation、Recreation、Dreams。", t: "British Council · Small talk guide", u: "https://englishonline.britishcouncil.org/blog/articles/your-guide-to-small-talk-topics-phrases-and-openers-in-english/" },
+      { fact: "初次见面尽量避开收入、年龄、婚姻、政治、宗教等隐私话题；不确定时把话题转回天气或活动本身。", t: "British Council · Small talk guide", u: "https://englishonline.britishcouncil.org/blog/articles/your-guide-to-small-talk-topics-phrases-and-openers-in-english/" },
+    ],
+    models: [
+      "Hi, I don't think we've met — I'm Mei. How do you know Sam? ... What do you do? ... What do you usually get up to at weekends?",
+      "It's been lovely chatting with you — I should go and say hi to a few people. Let's keep in touch — are you on WeChat?",
+      "Oh, really? How long were you in Japan? What was the best part? Would you go back?",
+    ],
+    sources: [
+      { t: "British Council English Online · Small talk topics, phrases & openers", u: "https://englishonline.britishcouncil.org/blog/articles/your-guide-to-small-talk-topics-phrases-and-openers-in-english/" },
+      { t: "ESL Fast · Easy Conversations: Daily Life", u: "https://www.eslfast.com/easydialogs/dailylife.htm" }
+    ]
+  }
+];
+
+/* ===== 场景数据（二）：旅行 2 个 + 职场 3 个 ===== */
+SCENARIOS.push(
+  {
+    id: "airport",
+    cat: "travel",
+    icon: "✈️",
+    level: "B1",
+    zh: "机场值机与入境",
+    en: "Airport: Check-in & Immigration",
+    roles: [
+      { en: "Ground staff / Officer", zh: "地勤人员 / 边检官员" },
+      { en: "Passenger", zh: "旅客" }
+    ],
+    setting: "你在机场办理值机，托运行李、选座位；过安检后排队入境，回答边检问题。登机口临时变更，你需要听广播确认。",
+    goal: "顺利完成值机 → 处理行李问题 → 通过安检与入境问答 → 听懂登机广播与登机口变更。",
+    canDo: [
+      "办理值机、出示护照与订票号",
+      "说明托运行李与随身行李，处理超重",
+      "听懂安检指令",
+      "回答入境问题：目的、停留时间、住宿",
+      "听懂延误、登机口变更与转机信息"
+    ],
+    tips: [
+      "入境回答要简短清楚：Tourism. / Two weeks. / At the Hilton.",
+      "手提行李液体一般限 100 毫升，且要装进透明密封袋。",
+      "luggage / baggage 是不可数名词：说 a piece of luggage 或 two bags，不说 a luggage。",
+      "转机叫 layover 或 connecting flight；直飞是 direct flight，不是 straight flight。",
+      "回答边检 “Where are you staying?” 时，直接说酒店名和所在区即可。"
+    ],
+    vocab: [
+      { en: "boarding pass", ipa: "/ˈbɔːdɪŋ pɑːs/", pos: "n.", zh: "登机牌", ex: "Here's your boarding pass.", exZh: "这是您的登机牌。" },
+      { en: "check-in counter", ipa: "/ˈtʃek ɪn ˌkaʊntə/", pos: "n.", zh: "值机柜台", ex: "The check-in counter is over there.", exZh: "值机柜台在那边。" },
+      { en: "carry-on", ipa: "/ˈkæri ɒn/", pos: "n.", zh: "随身行李", ex: "Is this bag small enough for carry-on?", exZh: "这个包能当随身行李吗？" },
+      { en: "checked baggage", ipa: "/ˌtʃekt ˈbæɡɪdʒ/", pos: "n.", zh: "托运行李", ex: "How much checked baggage is allowed?", exZh: "可以托运多少行李？" },
+      { en: "excess baggage", ipa: "/ˌekses ˈbæɡɪdʒ/", pos: "n.", zh: "超额行李", ex: "How much is excess baggage?", exZh: "超重行李怎么收费？" },
+      { en: "gate", ipa: "/ɡeɪt/", pos: "n.", zh: "登机口", ex: "Boarding starts at gate 22.", exZh: "在 22 号登机口登机。" },
+      { en: "security check", ipa: "/sɪˈkjʊərəti tʃek/", pos: "n.", zh: "安检", ex: "Please go through security check.", exZh: "请通过安检。" },
+      { en: "passport control", ipa: "/ˈpɑːspɔːt kənˌtrəʊl/", pos: "n.", zh: "护照查验（边检）", ex: "There's a long queue at passport control.", exZh: "边检排队很长。" },
+      { en: "customs", ipa: "/ˈkʌstəmz/", pos: "n.", zh: "海关", ex: "Go through customs after baggage claim.", exZh: "取完行李后过海关。" },
+      { en: "declare", ipa: "/dɪˈkleə/", pos: "v.", zh: "申报", ex: "I have nothing to declare.", exZh: "我没有需要申报的物品。" },
+      { en: "layover", ipa: "/ˈleɪəʊvə/", pos: "n.", zh: "转机停留", ex: "I have a three-hour layover in Dubai.", exZh: "我在迪拜转机停留三小时。" },
+      { en: "delayed", ipa: "/dɪˈleɪd/", pos: "adj.", zh: "延误的", ex: "The flight has been delayed by an hour.", exZh: "航班延误了一小时。" }
+    ],
+    phrases: [
+      {
+        fn: "值机", en: "Check-in",
+        items: [
+          { en: "I'd like to check in for flight BA 123.", zh: "我要办理 BA123 航班的值机。" },
+          { en: "Here's my passport and booking reference.", zh: "这是我的护照和订票号。" },
+          { en: "Could I have a window seat, please?", zh: "可以给我一个靠窗座位吗？" },
+          { en: "I have one bag to check in.", zh: "我有一件行李要托运。" }
+        ]
+      },
+      {
+        fn: "行李问题", en: "Baggage",
+        items: [
+          { en: "How much is excess baggage?", zh: "超额行李怎么收费？" },
+          { en: "Is this bag too heavy?", zh: "这个包超重了吗？" },
+          { en: "Can I take this as carry-on?", zh: "这个可以随身带上飞机吗？" },
+          { en: "Where do I collect my luggage?", zh: "我在哪里取行李？" }
+        ]
+      },
+      {
+        fn: "安检与登机", en: "Security & boarding",
+        items: [
+          { en: "Do I need to take my laptop out?", zh: "我需要把笔记本电脑拿出来吗？" },
+          { en: "What time does boarding start?", zh: "几点开始登机？" },
+          { en: "Which gate is it?", zh: "是几号登机口？" },
+          { en: "Is the flight on time?", zh: "航班准点吗？" }
+        ]
+      },
+      {
+        fn: "入境与海关", en: "Immigration & customs",
+        items: [
+          { en: "What's the purpose of your visit?", zh: "你此行的目的是什么？" },
+          { en: "I'm here for tourism / on business.", zh: "我是来旅游的 / 出差的。" },
+          { en: "I'm staying for two weeks.", zh: "我会停留两周。" },
+          { en: "I have nothing to declare.", zh: "我没有需要申报的物品。" }
+        ]
+      },
+      {
+        fn: "航班变化", en: "Changes",
+        items: [
+          { en: "Is the flight delayed?", zh: "航班延误了吗？" },
+          { en: "Has the gate changed?", zh: "登机口变了吗？" },
+          { en: "Where do I catch the connecting flight?", zh: "我在哪里转机？" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Good morning. May I see your passport and booking reference, please?", zh: "早上好，请出示护照和订票号。" },
+      { who: "B", en: "Here you are. I'd like to check in for the flight to London.", zh: "给您。我要办理去伦敦的航班值机。" },
+      { who: "A", en: "Thank you. How many bags are you checking in?", zh: "谢谢。您有几件行李要托运？" },
+      { who: "B", en: "Just one. And I'd like a window seat, please.", zh: "就一件。我想要靠窗的座位。" },
+      { who: "A", en: "Certainly. Your bag is slightly over the limit — that'll be 30 dollars.", zh: "好的。您的行李稍微超重，需要付 30 美元。" },
+      { who: "B", en: "No problem. Can I pay by card? Oh, and what time does boarding start?", zh: "没问题，可以刷卡吗？对了，几点登机？" },
+      { who: "A", en: "Card is fine. Boarding starts at 10:40 at gate 22. Here's your boarding pass.", zh: "可以刷卡。10:40 在 22 号登机口登机。这是您的登机牌。" },
+      { who: "B", en: "Thank you. Next stop: passport control, right?", zh: "谢谢。接下来是边检，对吗？" },
+      { who: "A", en: "That's right — and after that, customs. Have a good flight!", zh: "没错，然后过海关。祝您旅途愉快！" },
+      { who: "B", en: "Thanks a lot!", zh: "非常感谢！" }
+    ],
+    mistakes: [
+      { wrong: "I have a luggage.", right: "I have one piece of luggage. / I have two bags.", note: "luggage 不可数，不能加 a；用 a piece of luggage 或直接说 bags。" },
+      { wrong: "I go to London tomorrow.", right: "I'm going to London tomorrow.", note: "已安排好的将来计划用现在进行时；will 更适合临时决定。" },
+      { wrong: "I stay two weeks.", right: "I'm staying for two weeks.", note: "回答已安排好的停留计划用现在进行时 + for；I stay 是习惯性动作，听起来像“我平时都待两周”。" },
+      { wrong: "straight flight", right: "direct flight", note: "“直飞”是 direct flight；straight flight 不是英语里的固定说法。" }
+    ],
+    tasks: [
+      "角色扮演：办理值机，一件托运行李、一个随身包，要求靠过道座位，并问清登机口和登机时间。",
+      "边检问答练习：回答 purpose of visit / length of stay / where are you staying 三个问题。",
+      "挑战：广播说 “Flight BA123 is delayed and will now depart from gate 35.”，用自己的话转述给同行的朋友。"
+    ],
+    quiz: [
+      {
+        q: "边检问 “What's the purpose of your visit?”，你是去旅游，应回答：",
+        options: ["I'm going to visit my friend's house.", "Tourism.", "I like England."],
+        a: 1,
+        why: "入境回答要简短明确：Tourism / Business / Visiting family 等。"
+      },
+      {
+        q: "“直飞航班”正确的英文是：",
+        options: ["straight flight", "direct flight", "one-way flight"],
+        a: 1,
+        why: "direct flight 是直飞；straight flight 是中式直译。one-way 是单程。"
+      },
+      {
+        q: "行李超重，地勤说 “You'll have to pay excess baggage.”，意思是：",
+        options: ["需要支付超额行李费", "需要换一个行李箱", "需要把行李拿出来重新打包"],
+        a: 0,
+        why: "excess baggage 指超出免费额度的行李，通常需要额外付费。"
+      }
+    ],
+    realWorld: [
+      { fact: "英国机场随身液体长期规定：每瓶不超过 100 毫升，装入透明可密封袋；部分机场新扫描仪在逐步放宽限制，出发前以机场官网为准。", t: "GOV.UK · Hand luggage restrictions", u: "https://www.gov.uk/hand-luggage-restrictions" },
+      { fact: "入境英国时护照需覆盖整个停留期，边检可能询问来英目的、停留时间、住宿与返程安排；回答简短一致最稳妥。", t: "GOV.UK · UK border control", u: "https://www.gov.uk/uk-border-control" },
+    ],
+    models: [
+      "I'd like to check in for flight BA 123, please. Here's my passport. I have one bag to check in, and could I have an aisle seat, please? What time does boarding start, and which gate is it?",
+      "Tourism. I'm staying for two weeks. I'm staying at the Hilton near the station, and I have a return ticket.",
+      "They've just announced that BA 123 is delayed and will now depart from gate 35 — we need to go to the new gate.",
+    ],
+    sources: [
+      { t: "EnglishClub · Illustrated Airport Vocabulary", u: "https://www.englishclub.com/vocabulary/illustrated/airport.php" },
+      { t: "ESL Fast · Easy Conversations: Travel", u: "https://www.eslfast.com/easydialogs/travel.htm" }
+    ]
+  },
+  {
+    id: "hotel",
+    cat: "travel",
+    icon: "🏨",
+    level: "B1",
+    zh: "酒店入住与问题处理",
+    en: "Hotel: Check-in & Solving Problems",
+    roles: [
+      { en: "Receptionist", zh: "前台" },
+      { en: "Guest", zh: "住客" }
+    ],
+    setting: "晚上 9 点你到达酒店，预订了两晚的双床房。进房后发现空调坏了、毛巾也不够，你需要打电话到前台说明问题并请对方解决。",
+    goal: "办理入住 → 确认房型、早餐与退房时间 → 遇到问题时礼貌投诉并得到解决方案（维修、换房或补偿）。",
+    canDo: [
+      "报预订名、出示证件、确认房型与价格",
+      "询问早餐时间、Wi-Fi、退房时间和延迟退房",
+      "描述房间问题并提出具体请求",
+      "要求换房、维修或补偿",
+      "退房时结账、寄存行李"
+    ],
+    tips: [
+      "double room 是一张双人床，twin room 是两张单人床，订房时千万别弄混。",
+      "投诉用 “I'm afraid…” / “There seems to be a problem with…” 比直接指责更容易得到帮助。",
+      "英国入住常要 photo ID 和信用卡押金（deposit），退房时解冻。",
+      "“换房间”说 “Could I change rooms?”，升级房间是 upgrade。",
+      "前台问 “How was your stay?”，有不满可以委婉提出：Everything was fine, except…"
+    ],
+    vocab: [
+      { en: "reservation", ipa: "/ˌrezəˈveɪʃn/", pos: "n.", zh: "预订", ex: "I have a reservation under Chen.", exZh: "我用陈这个名字订了房。" },
+      { en: "vacancy", ipa: "/ˈveɪkənsi/", pos: "n.", zh: "空房", ex: "Do you have any vacancies?", exZh: "还有空房吗？" },
+      { en: "check-in time", ipa: "/ˈtʃek ɪn taɪm/", pos: "n.", zh: "入住时间", ex: "Check-in time is after 3 p.m.", exZh: "下午三点后可以入住。" },
+      { en: "double room", ipa: "/ˌdʌbl ˈruːm/", pos: "n.", zh: "双人床房", ex: "I'd like a double room.", exZh: "我要一间双人床房。" },
+      { en: "twin room", ipa: "/ˈtwɪn ruːm/", pos: "n.", zh: "双床房（两张单人床）", ex: "We need a twin room.", exZh: "我们需要一间双床房。" },
+      { en: "deposit", ipa: "/dɪˈpɒzɪt/", pos: "n.", zh: "押金", ex: "We'll need a deposit for the room.", exZh: "房间需要押金。" },
+      { en: "housekeeping", ipa: "/ˈhaʊskiːpɪŋ/", pos: "n.", zh: "客房服务", ex: "Could you ask housekeeping for more towels?", exZh: "可以让客房服务再送些毛巾吗？" },
+      { en: "air conditioning", ipa: "/ˈeə kənˌdɪʃənɪŋ/", pos: "n.", zh: "空调", ex: "The air conditioning isn't working.", exZh: "空调坏了。" },
+      { en: "wake-up call", ipa: "/ˈweɪk ʌp kɔːl/", pos: "n.", zh: "叫醒服务", ex: "Could I book a wake-up call for seven?", exZh: "可以帮我订七点的叫醒服务吗？" },
+      { en: "late check-out", ipa: "/ˌleɪt ˈtʃek aʊt/", pos: "n.", zh: "延迟退房", ex: "Is late check-out possible?", exZh: "可以延迟退房吗？" },
+      { en: "upgrade", ipa: "/ˈʌpɡreɪd/", pos: "n./v.", zh: "升级（房间）", ex: "Could we get an upgrade?", exZh: "可以升级房间吗？" }
+    ],
+    phrases: [
+      {
+        fn: "办理入住", en: "Checking in",
+        items: [
+          { en: "I have a reservation under Zhang.", zh: "我用张这个名字订了房。" },
+          { en: "I booked a twin room for two nights.", zh: "我订了一间双床房，住两晚。" },
+          { en: "Is breakfast included?", zh: "包含早餐吗？" },
+          { en: "Could I have a room on a higher floor?", zh: "可以给我高层的房间吗？" }
+        ]
+      },
+      {
+        fn: "询问设施", en: "Facilities",
+        items: [
+          { en: "What time is check-out?", zh: "几点退房？" },
+          { en: "Could I get a late check-out?", zh: "可以延迟退房吗？" },
+          { en: "How do I connect to the Wi-Fi?", zh: "怎么连 Wi-Fi？" },
+          { en: "Is there a gym in the hotel?", zh: "酒店里有健身房吗？" }
+        ]
+      },
+      {
+        fn: "反映问题", en: "Reporting problems",
+        items: [
+          { en: "I'm afraid the air conditioning isn't working.", zh: "不好意思，空调坏了。" },
+          { en: "Could you send someone up to fix it?", zh: "可以派人上来修一下吗？" },
+          { en: "The room is quite noisy.", zh: "房间很吵。" },
+          { en: "Could I change rooms, please?", zh: "可以换个房间吗？" }
+        ]
+      },
+      {
+        fn: "退房与补偿", en: "Check-out",
+        items: [
+          { en: "Could I have the bill, please?", zh: "可以结账吗？" },
+          { en: "Could we leave our luggage here after check-out?", zh: "退房后可以把行李寄存在这里吗？" },
+          { en: "I'd like to speak to the manager, please.", zh: "我想和经理谈谈。" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Good evening. How can I help you?", zh: "晚上好，有什么可以帮您？" },
+      { who: "B", en: "Hi, I have a reservation under Chen — a twin room for two nights.", zh: "你好，我用陈的名字订了房，双床房，住两晚。" },
+      { who: "A", en: "Let me check… Yes, here it is. Could I see your passport, please? And we'll need a deposit of 100 pounds.", zh: "我查一下……找到了。可以看一下您的护照吗？另外需要 100 镑押金。" },
+      { who: "B", en: "Sure. Is breakfast included? And what time is check-out?", zh: "好的。包含早餐吗？几点退房？" },
+      { who: "A", en: "Breakfast is from 7 to 10 on the second floor, and check-out is at noon.", zh: "早餐在二楼，7 点到 10 点；中午 12 点退房。" },
+      { who: "B", en: "Great. Hmm, the room is quite cold — is the heating working?", zh: "好的。嗯，房间挺冷的，暖气开着吗？" },
+      { who: "A", en: "I'm sorry about that. I'll send someone from housekeeping to check it right away.", zh: "很抱歉，我马上让客房服务的人去检查。" },
+      { who: "B", en: "Thanks. Also, could we get two more towels and a couple of pillows?", zh: "谢谢。另外可以再给我们两条毛巾和几个枕头吗？" },
+      { who: "A", en: "Of course. I'll have them brought up in ten minutes. Anything else?", zh: "当然，十分钟内送上去。还有别的事吗？" },
+      { who: "B", en: "That's all for now. And if the heating can't be fixed, could we change rooms?", zh: "暂时就这些。如果暖气修不好，可以换房间吗？" },
+      { who: "A", en: "Absolutely — just call the front desk and we'll arrange it. Enjoy your stay!", zh: "当然可以，打电话到前台，我们来安排。祝您入住愉快！" }
+    ],
+    mistakes: [
+      { wrong: "I booked a reservation.", right: "I made a reservation. / I booked a room.", note: "booking 和 reservation 意思重叠；make a reservation 或 book a room 都可以，但别叠加。" },
+      { wrong: "I want a double room with two beds.", right: "I'd like a twin room.", note: "double room 是大床房；两张单人床叫 twin room，说清楚能避免误会。" },
+      { wrong: "The air conditioning doesn't work!", right: "I'm afraid the air conditioning isn't working.", note: "加 I'm afraid 和进行时，语气缓和很多，更容易得到帮助。" },
+      { wrong: "Can you change my room?", right: "Could I change rooms, please?", note: "换房是“我”换房间，用 Could I… 更礼貌；change my room 听起来像让前台搬房间。" }
+    ],
+    tasks: [
+      "角色扮演：办理入住，确认房型、早餐、退房时间，并额外要一床被子。",
+      "房间空调坏了，打电话到前台：说明问题、要求维修，并问如果修不好能否换房。",
+      "挑战：退房时发现账单上多了一笔迷你吧消费，但你并没有用过。用英文礼貌地要求核对并去掉这笔费用。"
+    ],
+    quiz: [
+      {
+        q: "“我要一间两张单人床的房间”应说：",
+        options: ["I'd like a double room.", "I'd like a twin room.", "I'd like two rooms."],
+        a: 1,
+        why: "twin room 是两张单人床；double room 是一张双人床。"
+      },
+      {
+        q: "想礼貌地反映空调坏了，最合适的是：",
+        options: ["Your AC is broken. Fix it.", "I'm afraid the air conditioning isn't working.", "The room is bad."],
+        a: 1,
+        why: "I'm afraid… + 进行时是最常见的礼貌投诉句式。"
+      },
+      {
+        q: "“可以把行李寄存在这里吗？”应说：",
+        options: ["Can you keep my luggage?", "Could you store my luggage here?", "Could we leave our luggage here?",],
+        a: 2,
+        why: "Could we leave our luggage here? 是酒店寄存行李最自然的说法。"
+      }
+    ],
+    realWorld: [
+      { fact: "入住（check-in）与退房（check-out）时间各家不同；早到可先寄存行李，延迟退房要提前申请，部分酒店会收费。", t: "EnglishClub · Checking guests in and out", u: "https://www.englishclub.com/english-for-work/hotel-check-in-out.php" },
+      { fact: "订房时看清房型：double room 是一张双人床，twin room 是两张单人床；酒店通常还会要求押金（deposit）。", t: "EnglishClub · Hotel vocabulary", u: "https://www.englishclub.com/english-for-work/hotel-vocabulary.php" },
+    ],
+    models: [
+      "I have a reservation under Chen — a twin room for two nights. Is breakfast included? What time is check-out? Could I also get an extra blanket?",
+      "Hello, this is room 802. I'm afraid the air conditioning isn't working. Could you send someone up to fix it? If it can't be fixed, could I change rooms, please?",
+      "I'm sorry, but there's a mini-bar charge on my bill that I don't recognise — we didn't use the mini-bar. Could you check it and take it off, please?",
+    ],
+    sources: [
+      { t: "EnglishClub · Checking Guests In and Out", u: "https://www.englishclub.com/english-for-work/hotel-check-in-out.php" },
+      { t: "EnglishClub · Hotel Vocabulary", u: "https://www.englishclub.com/english-for-work/hotel-vocabulary.php" }
+    ]
+  },
+  {
+    id: "interview",
+    cat: "work",
+    icon: "💼",
+    level: "B2",
+    zh: "求职面试",
+    en: "Job Interview",
+    roles: [
+      { en: "Interviewer", zh: "面试官" },
+      { en: "Candidate", zh: "求职者" }
+    ],
+    setting: "你应聘一家外企的市场助理岗位。面试包括自我介绍、行为面试（用具体例子说明你如何解决问题）、薪资期望与最后的提问环节。",
+    goal: "90 秒自我介绍 → 用 STAR 讲一个具体例子 → 回答优势与弱点 → 提出两个有质量的问题 → 谈薪资与到岗时间。",
+    canDo: [
+      "结构清晰地做自我介绍",
+      "用 STAR（Situation, Task, Action, Result）讲经历",
+      "谈优势、弱点、团队合作与抗压能力",
+      "向面试官提出有质量的问题",
+      "礼貌地谈薪资、通知期与到岗时间"
+    ],
+    tips: [
+      "紧张时先说结论：The best example is… 再展开细节，面试官更容易跟上。",
+      "不要说 “I don't have any weaknesses”；给一个真实但可改进的弱点，并说明你正在怎么改。",
+      "薪资问题先问区间：I'm looking for something in the range of…",
+      "面试后 24 小时内发一封简短的 thank-you email，能加分。",
+      "回答“为什么想来我们公司”时，结合岗位与公司近期动态，比泛泛夸公司有效。"
+    ],
+    vocab: [
+      { en: "CV / résumé", ipa: "/ˌsiː ˈviː/", pos: "n.", zh: "简历（英式 CV，美式 résumé）", ex: "Could I send you my CV?", exZh: "我可以把简历发给您吗？" },
+      { en: "candidate", ipa: "/ˈkændɪdət/", pos: "n.", zh: "候选人", ex: "We have five candidates for the role.", exZh: "这个岗位有五位候选人。" },
+      { en: "qualification", ipa: "/ˌkwɒlɪfɪˈkeɪʃn/", pos: "n.", zh: "资历；学历", ex: "What qualifications do you have?", exZh: "你有哪些资历？" },
+      { en: "relevant experience", ipa: "/ˈreləvənt ɪkˌspɪəriəns/", pos: "n.", zh: "相关经验", ex: "I have three years of relevant experience.", exZh: "我有三年相关经验。" },
+      { en: "achievement", ipa: "/əˈtʃiːvmənt/", pos: "n.", zh: "成就", ex: "What's your biggest achievement?", exZh: "你最大的成就是什么？" },
+      { en: "strength", ipa: "/streŋθ/", pos: "n.", zh: "优势", ex: "My main strength is problem-solving.", exZh: "我的主要优势是解决问题。" },
+      { en: "weakness", ipa: "/ˈwiːknəs/", pos: "n.", zh: "弱点", ex: "One weakness is that I take on too much.", exZh: "我的一个弱点是揽太多事。" },
+      { en: "team player", ipa: "/ˌtiːm ˈpleɪə/", pos: "n.", zh: "有团队精神的人", ex: "I'm a strong team player.", exZh: "我很有团队合作精神。" },
+      { en: "deadline", ipa: "/ˈdedlaɪn/", pos: "n.", zh: "截止日期", ex: "I work well under deadlines.", exZh: "我在截止日期压力下也能好好工作。" },
+      { en: "salary expectation", ipa: "/ˈsæləri ˌekspekˈteɪʃn/", pos: "n.", zh: "薪资期望", ex: "What are your salary expectations?", exZh: "你的薪资期望是多少？" },
+      { en: "notice period", ipa: "/ˈnəʊtɪs ˌpɪəriəd/", pos: "n.", zh: "离职通知期", ex: "I have a one-month notice period.", exZh: "我需要提前一个月通知。" },
+      { en: "follow up", ipa: "/ˌfɒləʊ ˈʌp/", pos: "phr.", zh: "跟进", ex: "I'll follow up by email.", exZh: "我会发邮件跟进。" }
+    ],
+    phrases: [
+      {
+        fn: "自我介绍", en: "Introducing yourself",
+        items: [
+          { en: "Thank you for seeing me today.", zh: "感谢您今天给我机会。" },
+          { en: "I'm currently working as a marketing assistant at…", zh: "我目前在一家公司做市场助理。" },
+          { en: "I've been in this role for two years.", zh: "我做这个岗位两年了。" },
+          { en: "I'm looking for a role where I can…", zh: "我在找一个能让我……的岗位。" }
+        ]
+      },
+      {
+        fn: "用 STAR 讲经历", en: "STAR stories",
+        items: [
+          { en: "For example, last year we…", zh: "比如去年我们……" },
+          { en: "My task was to…", zh: "我的任务是……" },
+          { en: "I took the lead on…", zh: "我牵头负责了……" },
+          { en: "As a result, we increased sales by 20%.", zh: "结果我们的销售额增长了 20%。" }
+        ]
+      },
+      {
+        fn: "优势与弱点", en: "Strengths & weaknesses",
+        items: [
+          { en: "My biggest strength is…", zh: "我最大的优势是……" },
+          { en: "I'd say I'm quite good at…", zh: "我觉得我比较擅长……" },
+          { en: "One area I'm working on is…", zh: "我正在改进的一个方面是……" },
+          { en: "I've been taking a course to improve it.", zh: "我一直在上课提升这一点。" }
+        ]
+      },
+      {
+        fn: "提问与薪资", en: "Questions & salary",
+        items: [
+          { en: "Could you tell me more about the team?", zh: "可以多介绍下团队吗？" },
+          { en: "What does success look like in this role?", zh: "这个岗位做得好是什么标准？" },
+          { en: "My salary expectation is around…", zh: "我的薪资期望大约是……" },
+          { en: "I'd need to give one month's notice.", zh: "我需要提前一个月通知现公司。" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Thanks for coming in today. Could you start by telling me a bit about yourself?", zh: "感谢你今天过来。可以先简单介绍一下自己吗？" },
+      { who: "B", en: "Thank you for the opportunity. I'm currently a marketing assistant at a retail company, and I've been in this role for two years. I focus on social media campaigns and customer research.", zh: "谢谢您给我机会。我目前在一家零售公司做市场助理，已经两年了，主要负责社交媒体活动和客户调研。" },
+      { who: "A", en: "Great. Can you give me an example of a challenge you faced and how you handled it?", zh: "很好。能举一个你遇到挑战并解决它的例子吗？" },
+      { who: "B", en: "Sure. Last year our biggest campaign was delayed because a supplier pulled out. My task was to launch on time, so I found two alternative suppliers and renegotiated the budget. As a result, we launched only three days late and stayed within budget.", zh: "可以。去年我们最大的活动因为供应商退出而延期。我的任务是要按时上线，所以我找了两家替代供应商并重新谈了预算。结果我们只晚了三天上线，而且没有超预算。" },
+      { who: "A", en: "Nice. And what would you say is your biggest weakness?", zh: "不错。那你觉得自己最大的弱点是什么？" },
+      { who: "B", en: "I used to take on too many tasks myself instead of delegating. I've been working on it by tracking priorities with my manager, and I now delegate more clearly.", zh: "我以前习惯自己揽太多任务，不善于分配。现在我通过和经理一起梳理优先级来改进，也更清楚地把任务分配出去。" },
+      { who: "A", en: "Good to hear. What are your salary expectations?", zh: "很好。你的薪资期望是多少？" },
+      { who: "B", en: "I'm looking for something in the range of 12 to 15 thousand a month, depending on the full package. Could you tell me the range for this role?", zh: "我希望在每月 1.2 万到 1.5 万之间，具体看整体福利。可以告诉我这个岗位的薪资区间吗？" },
+      { who: "A", en: "The range is 13 to 16 thousand. Do you have any questions for us?", zh: "区间是 1.3 万到 1.6 万。你有什么问题想问我们吗？" },
+      { who: "B", en: "Yes — what does success look like in the first six months? And how does the team usually collaborate?", zh: "有。前六个月做得好是什么标准？团队平时怎么协作？" },
+      { who: "A", en: "Great questions. We'll be in touch by Friday.", zh: "问得很好。我们周五前会联系你。" }
+    ],
+    mistakes: [
+      { wrong: "I have many experiences in marketing.", right: "I have a lot of experience in marketing.", note: "experience 作“经验”讲时不可数；作“经历”才可数（an experience）。" },
+      { wrong: "I am working here for three years.", right: "I've been working here for three years.", note: "从过去持续到现在用现在完成进行时。" },
+      { wrong: "My weakness is that I'm a perfectionist.", right: "I tend to spend too long on details, so I've started setting time limits.", note: "“我是完美主义者”太模板化；给具体、可改进的弱点更可信。" },
+      { wrong: "How much is the salary?", right: "What's the salary range for this role?", note: "问薪资用 salary range 更专业，也更给对方留余地。" }
+    ],
+    tasks: [
+      "写并录制一段 90 秒英文自我介绍（现状 → 关键经验 → 为什么适合这个岗位）。",
+      "用 STAR 结构准备一个“解决突发问题”的例子，控制在 2 分钟内。",
+      "挑战：面试官问 “Why should we hire you?”，用三个理由回答，并各配一个证据。"
+    ],
+    quiz: [
+      {
+        q: "“我有三年相关经验”最自然的是：",
+        options: ["I have three years relevant experiences.", "I have three years of relevant experience.", "I have many experiences about three years."],
+        a: 1,
+        why: "experience 表示“经验”时不可数，用 three years of experience。"
+      },
+      {
+        q: "STAR 方法中的 A 代表：",
+        options: ["Answer（回答）", "Action（行动）", "Achievement（成就）"],
+        a: 1,
+        why: "STAR = Situation, Task, Action, Result；A 是 Action，重点说你做了什么。"
+      },
+      {
+        q: "被问到薪资期望，比较专业的回答是：",
+        options: ["I want 20 thousand. No less.", "I'm looking for something in the range of 15 to 18 thousand, depending on the package.", "Whatever you think is fine."],
+        a: 1,
+        why: "给区间并说明“取决于整体待遇”，既表达预期又保留谈判空间。"
+      }
+    ],
+    realWorld: [
+      { fact: "英国面试常用 STAR 法回答行为问题：Situation（情境）、Task（任务）、Action（行动）、Result（结果）。", t: "National Careers Service · The STAR method", u: "https://nationalcareers.service.gov.uk/careers-advice/interview-advice/the-star-method" },
+      { fact: "面试官通常会围绕岗位要求逐条提问；回答前可以请对方重复问题，准备好 1–2 分钟的例子最有效。", t: "National Careers Service · Interview advice", u: "https://nationalcareers.service.gov.uk/careers-advice/interview-advice" },
+    ],
+    models: [
+      "Thank you for seeing me today. I'm currently a marketing assistant at a retail company, where I've worked for two years. I focus on social media campaigns and customer research, and I'm looking for a role where I can take on more responsibility.",
+      "Last year our biggest campaign was delayed because a supplier pulled out. My task was to launch on time, so I found two alternative suppliers and renegotiated the budget. As a result, we launched only three days late and stayed within budget.",
+      "There are three reasons. First, I have hands-on experience in this area. Second, I communicate well across teams — for example, I coordinated design, sales and suppliers on my last campaign. Third, I work well under pressure and always hit deadlines.",
+    ],
+    sources: [
+      { t: "British Council English Online · Competency-based interview questions", u: "https://englishonline.britishcouncil.org/blog/articles/employability-skills-how-to-ace-competency-based-interview-questions/" },
+      { t: "ESL Fast · Easy Conversations: Jobs", u: "https://www.eslfast.com/easydialogs/jobs.htm" }
+    ]
+  },
+  {
+    id: "meeting",
+    cat: "work",
+    icon: "📊",
+    level: "B2",
+    zh: "职场会议与电话",
+    en: "Meetings & Phone Calls",
+    roles: [
+      { en: "Colleague / Client", zh: "同事 / 客户" },
+      { en: "You", zh: "你" }
+    ],
+    setting: "上午你打电话给客户确认项目会议时间，下午开会讨论进度、分配任务并确定下一步。你需要在电话里说清楚，在会议里提出意见并做记录。",
+    goal: "电话：说明来意、改期、确认信息 → 会议：开场、表达观点、礼貌反对、总结行动项 → 会后发邮件跟进。",
+    canDo: [
+      "电话开场、找人、说明来意",
+      "改期、确认时间与信息",
+      "会议开场、按议程推进",
+      "表达观点、礼貌反对、请求澄清",
+      "总结 action items 与负责人"
+    ],
+    tips: [
+      "电话里说名字要慢，必要时拼写：I'll spell that: L-I-N.",
+      "打断别人要礼貌：Sorry to interrupt, but…",
+      "商务场合用 follow up on… 比 revert（印度英语常用）更通用。",
+      "会议结尾一定要 recap：So, to recap, I'll send the report by Friday.",
+      "线上会议先说一句 “Can everyone hear me?” 确认设备，比直接开讲稳妥。"
+    ],
+    vocab: [
+      { en: "agenda", ipa: "/əˈdʒendə/", pos: "n.", zh: "议程", ex: "The first item on the agenda is the budget.", exZh: "议程第一项是预算。" },
+      { en: "minutes", ipa: "/ˈmɪnɪts/", pos: "n.", zh: "会议纪要", ex: "Could you take the minutes?", exZh: "你可以做会议纪要吗？" },
+      { en: "action item", ipa: "/ˈækʃn ˌaɪtəm/", pos: "n.", zh: "行动项", ex: "Let's go through the action items.", exZh: "我们过一下行动项。" },
+      { en: "deadline", ipa: "/ˈdedlaɪn/", pos: "n.", zh: "截止日期", ex: "The deadline is next Friday.", exZh: "截止日期是下周五。" },
+      { en: "follow up", ipa: "/ˌfɒləʊ ˈʌp/", pos: "phr.", zh: "跟进", ex: "I'll follow up with the client.", exZh: "我会和客户跟进。" },
+      { en: "dial in", ipa: "/ˌdaɪl ˈɪn/", pos: "phr.", zh: "拨入电话会议", ex: "Could you dial in at three?", exZh: "你能三点拨入会议吗？" },
+      { en: "mute", ipa: "/mjuːt/", pos: "v.", zh: "静音", ex: "Please mute your microphone.", exZh: "请静音。" },
+      { en: "on the same page", ipa: "/ɒn ðə ˌseɪm ˈpeɪdʒ/", pos: "phr.", zh: "达成共识", ex: "Let's make sure we're on the same page.", exZh: "我们确认一下大家理解一致。" },
+      { en: "stakeholder", ipa: "/ˈsteɪkhəʊldə/", pos: "n.", zh: "利益相关方", ex: "We need to update the stakeholders.", exZh: "我们需要向利益相关方同步。" },
+      { en: "deliverable", ipa: "/dɪˈlɪvərəbl/", pos: "n.", zh: "交付成果", ex: "The main deliverable is the report.", exZh: "主要交付成果是这份报告。" },
+      { en: "kick-off", ipa: "/ˈkɪk ɒf/", pos: "n.", zh: "启动会", ex: "The kick-off meeting is on Monday.", exZh: "启动会在周一。" },
+      { en: "wrap up", ipa: "/ˌræp ˈʌp/", pos: "phr.", zh: "结束；收尾", ex: "Let's wrap up here.", exZh: "我们今天就到这里。" }
+    ],
+    phrases: [
+      {
+        fn: "电话开场", en: "Phone openings",
+        items: [
+          { en: "Hello, this is Lin speaking. Could I speak to David, please?", zh: "你好，我是 Lin，请问 David 在吗？" },
+          { en: "I'm calling about tomorrow's meeting.", zh: "我打电话是想说说明天的会议。" },
+          { en: "Could you put me through to the sales team?", zh: "可以帮我转接销售团队吗？" }
+        ]
+      },
+      {
+        fn: "改期与确认", en: "Rescheduling",
+        items: [
+          { en: "Would it be possible to move the meeting to Thursday?", zh: "可以把会议改到周四吗？" },
+          { en: "Just to confirm, that's 3 p.m. on Thursday.", zh: "确认一下，是周四下午三点。" },
+          { en: "Sorry, the line is breaking up — could you repeat that?", zh: "抱歉，信号不好，可以再说一遍吗？" }
+        ]
+      },
+      {
+        fn: "会议表达", en: "In the meeting",
+        items: [
+          { en: "Let's get started. The first item on the agenda is…", zh: "我们开始吧，议程第一项是……" },
+          { en: "I'd like to add something here.", zh: "我想补充一点。" },
+          { en: "I see your point, but have we considered…?", zh: "我理解你的观点，但我们有没有考虑过……？" },
+          { en: "Could you clarify what you mean by…?", zh: "你能澄清一下……具体指什么吗？" }
+        ]
+      },
+      {
+        fn: "总结与跟进", en: "Wrap-up",
+        items: [
+          { en: "Let's recap the action items.", zh: "我们总结一下行动项。" },
+          { en: "I'll follow up with the client by Friday.", zh: "我周五前会和客户跟进。" },
+          { en: "Let's wrap up here.", zh: "今天就到这里。" },
+          { en: "I'll send the minutes after the meeting.", zh: "会后我会发会议纪要。" }
+        ]
+      }
+    ],
+    dialogue: [
+      { who: "A", en: "Good morning, Bright Ideas. How can I help you?", zh: "早上好，这里是 Bright Ideas，有什么可以帮您？" },
+      { who: "B", en: "Hello, this is Lin from Star Media. Could I speak to David, please?", zh: "你好，我是 Star Media 的 Lin，请问 David 在吗？" },
+      { who: "A", en: "Speaking. Hi Lin, how can I help?", zh: "我就是。你好 Lin，有什么事？" },
+      { who: "B", en: "Hi David. I'm calling about tomorrow's kick-off meeting. Would it be possible to move it to Thursday at three?", zh: "你好 David。我打电话是想说明天的启动会，可以改到周四下午三点吗？" },
+      { who: "A", en: "Let me check… Thursday at three works for me. Just to confirm, we'll dial in rather than meet in person?", zh: "我看看……周四三点可以。确认一下，我们是电话拨入而不是线下见面？" },
+      { who: "B", en: "That's right. I'll send the link and the agenda this afternoon.", zh: "对。我今天下午把链接和议程发过去。" },
+      { who: "A", en: "Perfect. One more thing — could you ask the design team to prepare the mock-ups before Thursday?", zh: "好。还有一件事，可以请设计团队在周四前准备好设计稿吗？" },
+      { who: "B", en: "Sure, I'll follow up with them today. Anything else?", zh: "可以，我今天就和他们跟进。还有别的事吗？" },
+      { who: "A", en: "That's all. Thanks, Lin — talk Thursday.", zh: "就这些。谢谢 Lin，周四聊。" },
+      { who: "B", en: "Thanks, David. Have a good day!", zh: "谢谢 David，祝你今天愉快！" }
+    ],
+    mistakes: [
+      { wrong: "Let's discuss about it tomorrow.", right: "Let's discuss it tomorrow.", note: "discuss 是及物动词，后面直接接宾语，不加 about。" },
+      { wrong: "Can you repeat again?", right: "Could you repeat that?", note: "repeat 已含“再一次”，repeat again 重复；用 Could you repeat that? 即可。" },
+      { wrong: "I will revert you.", right: "I'll get back to you.", note: "revert 在部分地区的英语里表示“回复”，但在英美商务场合更常用 get back to you。" },
+      { wrong: "I'm agree with you.", right: "I agree with you.", note: "agree 本身是动词，不需要 be 动词。" }
+    ],
+    tasks: [
+      "角色扮演：打电话给客户，把周五的会改到下周二上午十点，并确认会议形式（线上/线下）。",
+      "用英文主持一个 5 分钟小会：开场 → 过两个议程 → 分配任务 → 总结行动项。",
+      "挑战：同事提出一个你不同意的方案，用 “I see your point, but…” 礼貌反驳，并给出替代方案。"
+    ],
+    quiz: [
+      {
+        q: "“我们明天讨论一下”正确的说法是：",
+        options: ["Let's discuss about it tomorrow.", "Let's discuss it tomorrow.", "Let's discuss for it tomorrow."],
+        a: 1,
+        why: "discuss 及物，直接接宾语，不加 about / for。"
+      },
+      {
+        q: "电话里没听清，想请对方重复，最自然的是：",
+        options: ["Repeat again!", "Could you repeat that?", "What did you say?"],
+        a: 1,
+        why: "Could you repeat that? 礼貌清楚；repeat again 属于重复表达。"
+      },
+      {
+        q: "“我会和你跟进这件事”最地道的说法是：",
+        options: ["I will revert you.", "I'll follow up with you on this.", "I will follow you."],
+        a: 1,
+        why: "follow up with someone on something 是商务英语里最通用的“跟进”。"
+      }
+    ],
+    realWorld: [
+      { fact: "会议纪要（minutes）要写清决定、行动项（action items）、负责人和截止日期，会后发邮件确认。", t: "EnglishClub · Vocabulary for meetings", u: "https://www.englishclub.com/business-english/vocabulary-meetings.php" },
+      { fact: "跨地点会议叫 conference call（电话会议）或 videoconference（视频会议）；线上会议先确认设备与静音状态。", t: "EnglishClub · Vocabulary for meetings", u: "https://www.englishclub.com/business-english/vocabulary-meetings.php" },
+    ],
+    models: [
+      "Hello, this is Lin from Star Media. I'm calling about Friday's meeting — would it be possible to move it to Tuesday at ten? Just to confirm, we'll meet online. I'll send the link this afternoon.",
+      "Let's get started. The first item on the agenda is the campaign budget. ... So, to recap: I'll send the report by Friday, and Amy will follow up with the client.",
+      "I see your point, but I'm a little concerned about the timeline. Could we consider launching the smaller version first, and then adding features after the pilot?",
+    ],
+    sources: [
+      { t: "EnglishClub · Vocabulary for Meetings", u: "https://www.englishclub.com/business-english/vocabulary-meetings.php" },
+      { t: "EnglishClub · Telephone practice: ordering", u: "https://www.englishclub.com/speaking/telephone-practice-ordering.php" }
+    ]
+  }
+);
+
+/* ===== 英语情景对话实验室 · 交互逻辑 ===== */
+(function () {
+  "use strict";
+
+  var CATS = {
+    daily: { label: "日常", en: "Everyday", cls: "cat-daily", color: "#b45309" },
+    travel: { label: "旅行", en: "Travel", cls: "cat-travel", color: "#0369a1" },
+    work: { label: "职场", en: "Work", cls: "cat-work", color: "#6d28d9" }
+  };
+  var CAT_ORDER = ["daily", "travel", "work"];
+
+  var CEFR = {
+    A2: {
+      tag: "A2 基础级",
+      text: "能就熟悉的日常话题进行简单、直接的交流；能应付简短的社交对话，但通常还无法完全靠英语维持对话。",
+      url: "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions"
+    },
+    B1: {
+      tag: "B1 进阶级",
+      text: "能应对旅行中可能出现的大多数情况；无需提前准备，就能就熟悉的话题（家庭、爱好、工作、旅行等）参与对话。",
+      url: "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions"
+    },
+    B2: {
+      tag: "B2 高阶级",
+      text: "能较流利、自然地与母语者交流；能积极参与熟悉话题的讨论，说明并维护自己的观点。",
+      url: "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions"
+    }
+  };
+  var STORE_DONE = "esl-done-v1";
+  var STORE_ZH = "esl-hide-zh-v1";
+
+  var SPEAKER_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+
+  var state = {
+    currentId: null,
+    done: loadDone(),
+    hideZh: false
+  };
+
+  /* ---------- helpers ---------- */
+  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+  function $all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+
+  function esc(str) {
+    return String(str == null ? "" : str).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function dictUrl(word) {
+    var w = String(word || "").trim();
+    if (!w) return "https://dictionary.cambridge.org/";
+    if (/\s/.test(w)) return "https://dictionary.cambridge.org/search/english/direct/?q=" + encodeURIComponent(w);
+    return "https://dictionary.cambridge.org/dictionary/english/" + encodeURIComponent(w.toLowerCase());
+  }
+
+  function loadDone() {
+    try { return JSON.parse(localStorage.getItem(STORE_DONE) || "{}") || {}; }
+    catch (e) { return {}; }
+  }
+  function saveDone() {
+    try { localStorage.setItem(STORE_DONE, JSON.stringify(state.done)); } catch (e) { /* ignore */ }
+  }
+  function loadZhPref() {
+    try { return localStorage.getItem(STORE_ZH) === "1"; } catch (e) { return false; }
+  }
+  function saveZhPref() {
+    try { localStorage.setItem(STORE_ZH, state.hideZh ? "1" : "0"); } catch (e) { /* ignore */ }
+  }
+
+  var toastTimer = null;
+  function toast(msg) {
+    var el = $("#toast");
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove("show"); }, 2200);
+  }
+
+  function pad(n) { return n < 10 ? "0" + n : String(n); }
+  function getScenario(id) {
+    var found = null;
+    SCENARIOS.forEach(function (s) { if (s.id === id) found = s; });
+    return found;
+  }
+  function catOf(s) { return CATS[s.cat] || CATS.daily; }
+
+  /* ---------- speech ---------- */
+  var speechOK = typeof window.speechSynthesis !== "undefined" && typeof window.SpeechSynthesisUtterance !== "undefined";
+  var STORE_VOICE = "esl-voice-v1";
+  var STORE_RATE = "esl-rate-v1";
+  // 优先使用这些常见的高质量英语声音（Chrome / macOS / Windows）
+  var VOICE_PREF = [
+    "Google US English", "Google UK English Female", "Google UK English Male",
+    "Samantha", "Ava", "Allie", "Karen", "Serena", "Moira", "Tessa", "Daniel", "Alex",
+    "Microsoft Aria Online (Natural)", "Microsoft Jenny Online (Natural)", "Microsoft Guy Online (Natural)"
+  ];
+  // macOS 的「趣味/搞怪」声音与过老的机械音，默认不列出来
+  var VOICE_BLOCK = /(albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|jester|pipe organ|superstar|trinoids|whisper|wobble|zarvox|eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley|fred|junior|ralph|kathy|princess|vicki)/i;
+  var voices = [];
+  var playToken = 0;
+  var voiceLoadTimedOut = false;
+  var speechPrefs = { voiceURI: "", rate: 1 };
+
+  function loadVoicePrefs() {
+    try {
+      var v = localStorage.getItem(STORE_VOICE);
+      if (v) speechPrefs.voiceURI = v;
+      var r = parseFloat(localStorage.getItem(STORE_RATE) || "");
+      if (r >= 0.5 && r <= 1.5) speechPrefs.rate = r;
+    } catch (e) { /* ignore */ }
+  }
+  function saveVoicePrefs() {
+    try {
+      localStorage.setItem(STORE_VOICE, speechPrefs.voiceURI || "");
+      localStorage.setItem(STORE_RATE, String(speechPrefs.rate));
+    } catch (e) { /* ignore */ }
+  }
+
+  function getVoices() {
+    if (!speechOK) return [];
+    try { voices = window.speechSynthesis.getVoices() || []; } catch (e) { voices = []; }
+    return voices;
+  }
+
+  function englishVoices() {
+    return getVoices().filter(function (v) {
+      return /^en[-_]/i.test(v.lang || "") && !VOICE_BLOCK.test(v.name || "");
+    });
+  }
+
+  function voiceBadge(v) {
+    var lang = (v.lang || "").replace("_", "-").toLowerCase();
+    if (lang.indexOf("en-us") === 0) return "US";
+    if (lang.indexOf("en-gb") === 0) return "UK";
+    if (lang.indexOf("en-au") === 0) return "AU";
+    if (lang.indexOf("en-ca") === 0) return "CA";
+    if (lang.indexOf("en-in") === 0) return "IN";
+    return "其他英语";
+  }
+
+  function pickVoice() {
+    var list = englishVoices();
+    if (!list.length) return null;
+    if (speechPrefs.voiceURI) {
+      var chosen = null;
+      list.forEach(function (v) { if (!chosen && v.voiceURI === speechPrefs.voiceURI) chosen = v; });
+      if (chosen) return chosen;
+    }
+    for (var i = 0; i < VOICE_PREF.length; i++) {
+      for (var j = 0; j < list.length; j++) {
+        if (list[j].name === VOICE_PREF[i]) return list[j];
+      }
+    }
+    var us = null;
+    list.forEach(function (v) { if (!us && /^en[-_]US/i.test(v.lang)) us = v; });
+    return us || list[0];
+  }
+
+  function refreshVoicePanel() {
+    var select = $("#voiceSelect");
+    var status = $("#voiceStatus");
+    if (!select) return;
+    var list = englishVoices();
+    var html = '<option value="">自动（推荐）</option>';
+    var groups = { "US": [], "UK": [], "其他英语": [] };
+    list.forEach(function (v) {
+      var key = voiceBadge(v);
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(v);
+    });
+    ["US", "UK", "其他英语"].forEach(function (key) {
+      if (!groups[key] || !groups[key].length) return;
+      html += '<optgroup label="' + key + '">';
+      groups[key].forEach(function (v) {
+        html += '<option value="' + esc(v.voiceURI) + '">' + esc(v.name) + " (" + esc(v.lang) + ")</option>";
+      });
+      html += "</optgroup>";
+    });
+    select.innerHTML = html;
+    var exists = false;
+    list.forEach(function (v) { if (v.voiceURI === speechPrefs.voiceURI) exists = true; });
+    if (!exists) speechPrefs.voiceURI = "";
+    select.value = speechPrefs.voiceURI || "";
+    var rate = $("#rateSelect");
+    if (rate) rate.value = String(speechPrefs.rate);
+    if (status) {
+      if (!speechOK) status.textContent = "当前浏览器不支持语音朗读";
+      else if (!voices.length) status.textContent = voiceLoadTimedOut ? "未读取到声音列表，将使用浏览器默认声音" : "正在读取系统声音…";
+      else if (!list.length) status.textContent = "未找到英语声音，请安装英文语音包";
+      else status.textContent = "当前：" + (pickVoice() ? pickVoice().name : "自动");
+    }
+  }
+
+  function utter(text) {
+    var u = new window.SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+    u.rate = speechPrefs.rate;
+    var v = pickVoice();
+    if (v) { u.voice = v; u.lang = v.lang || "en-US"; }
+    return u;
+  }
+
+  function startUtter(u) {
+    try { window.speechSynthesis.speak(u); }
+    catch (e) { toast("朗读失败，请检查系统语音设置"); }
+  }
+
+  function speak(text) {
+    if (!speechOK) { toast("当前浏览器不支持语音朗读，建议使用 Chrome / Edge / Safari"); return; }
+    getVoices();
+    setTimeout(refreshVoicePanel, 120);
+    playToken++;
+    $all(".bubble.playing").forEach(function (el) { el.classList.remove("playing"); });
+    try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+    var u = utter(text);
+    // Chrome 有些版本 cancel 后立刻 speak 会没有声音，留一点间隔更稳
+    setTimeout(function () { startUtter(u); }, 60);
+  }
+
+  function testVoice() {
+    speak("Hello! Could I get a medium flat white, please?");
+  }
+
+  loadVoicePrefs();
+  getVoices();
+  if (speechOK) {
+    try {
+      window.speechSynthesis.onvoiceschanged = function () { getVoices(); refreshVoicePanel(); };
+    } catch (e) { /* ignore */ }
+  }
+
+  function setDlgStatus(text) {
+    var el = $("#dlgStatus");
+    if (el) el.textContent = text || "";
+  }
+
+  function stopDialogue(silent) {
+    playToken++;
+    if (speechOK) {
+      try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+    }
+    $all(".bubble.playing").forEach(function (el) { el.classList.remove("playing"); });
+    setDlgStatus(silent ? "" : "已停止");
+  }
+
+  function playDialogue() {
+    var sc = getScenario(state.currentId);
+    if (!sc) return;
+    if (!speechOK) { toast("当前浏览器不支持语音朗读，建议使用 Chrome / Edge / Safari"); return; }
+    stopDialogue(true);
+    var token = playToken;
+    var rows = $all("#scenarioRoot .bubble-row");
+    var i = 0;
+
+    function next() {
+      if (token !== playToken) return;
+      if (i >= sc.dialogue.length) { setDlgStatus("播放完毕 · 共 " + sc.dialogue.length + " 句"); return; }
+      var idx = i;
+      var bubble = rows[idx] ? $(".bubble", rows[idx]) : null;
+      if (!bubble) { i++; setTimeout(next, 60); return; }
+      $all(".bubble.playing").forEach(function (el) { el.classList.remove("playing"); });
+      bubble.classList.add("playing");
+      bubble.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      setDlgStatus("播放中… " + (idx + 1) + " / " + sc.dialogue.length);
+      var u = utter(sc.dialogue[idx].en);
+      u.onend = function () { if (token !== playToken) return; i++; setTimeout(next, 160); };
+      u.onerror = function () { if (token !== playToken) return; i++; setTimeout(next, 160); };
+      try { window.speechSynthesis.speak(u); } catch (e) { toast("朗读失败"); }
+    }
+    next();
+  }
+
+  /* ---------- render: nav ---------- */
+  var navGroups = $("#navGroups");
+  var progressFill = $("#progressFill");
+  var progressText = $("#progressText");
+
+  function buildNav() {
+    var html = CAT_ORDER.map(function (catKey) {
+      var cat = CATS[catKey];
+      var items = SCENARIOS.filter(function (s) { return s.cat === catKey; }).map(function (s) {
+        var active = s.id === state.currentId ? " active" : "";
+        var done = state.done[s.id] ? " done" : "";
+        return '<button class="nav-item' + active + done + '" data-nav="' + esc(s.id) + '" type="button" aria-current="' + (active ? "page" : "false") + '">' +
+          '<span class="ico" aria-hidden="true">' + s.icon + "</span>" +
+          '<span class="nb"><b>' + esc(s.zh) + "</b><span>" + esc(s.en) + "</span></span>" +
+          '<span class="lvl">' + esc(s.level) + "</span>" +
+          '<span class="done-mark" aria-label="已练习">✓</span>' +
+          "</button>";
+      }).join("");
+      return '<div class="nav-group"><p class="nav-group-title"><i style="background:' + cat.color + '"></i>' + cat.label + " · " + cat.en + "</p>" + items + "</div>";
+    }).join("");
+    navGroups.innerHTML = html;
+    updateProgress();
+  }
+
+  function updateProgress() {
+    var doneCount = SCENARIOS.filter(function (s) { return state.done[s.id]; }).length;
+    if (progressFill) progressFill.style.width = (doneCount / SCENARIOS.length * 100) + "%";
+    if (progressText) progressText.textContent = doneCount + " / " + SCENARIOS.length;
+    var stat = $("#statProgress");
+    if (stat) stat.textContent = doneCount + "/" + SCENARIOS.length;
+  }
+
+  /* ---------- render: scenario ---------- */
+  var root = $("#scenarioRoot");
+
+  function vocabCard(v) {
+    return '<div class="vocab-card" data-word="' + esc(v.en) + '" role="button" tabindex="0" aria-label="词汇卡：' + esc(v.en) + '，点击显示或隐藏释义">' +
+      '<div class="vocab-top"><div><div class="vocab-word">' + esc(v.en) + "</div>" +
+      '<div class="vocab-meta"><span class="ipa">' + esc(v.ipa) + '</span><span class="pos">' + esc(v.pos) + "</span></div></div>" +
+      '<div class="vocab-acts">' +
+        '<button class="spk" type="button" data-speak="' + esc(v.en) + '" aria-label="朗读 ' + esc(v.en) + '">' + SPEAKER_SVG + "</button>" +
+        '<a class="spk dict" href="' + esc(dictUrl(v.en)) + '" target="_blank" rel="noopener noreferrer" title="Cambridge 词典真人发音（需联网）" aria-label="在 Cambridge 词典听 ' + esc(v.en) + ' 的真人发音">C</a>' +
+      "</div></div>" +
+      '<p class="vocab-zh">' + esc(v.zh) + "</p>" +
+      '<p class="vocab-ex">' + esc(v.ex) + "</p>" +
+      '<p class="vocab-ex-zh">' + esc(v.exZh) + "</p>" +
+      "</div>";
+  }
+
+  function phraseRow(p) {
+    return '<div class="phrase-row" data-word="' + esc(p.en) + '"><div class="phrase-en">' + esc(p.en) +
+      '<span class="phrase-zh">' + esc(p.zh) + "</span></div>" +
+      '<button class="spk" type="button" data-speak="' + esc(p.en) + '" aria-label="朗读这句话">' + SPEAKER_SVG + "</button></div>";
+  }
+
+  function bubbleRow(line, idx, sc) {
+    var isB = line.who === "B";
+    var role = isB ? sc.roles[1] : sc.roles[0];
+    var roleLabel = role ? esc(role.en) + " · " + esc(role.zh) : line.who;
+    return '<div class="bubble-row ' + (isB ? "b" : "a") + '" data-idx="' + idx + '">' +
+      '<div class="bubble-avatar" aria-hidden="true">' + line.who + "</div>" +
+      '<div class="bubble-wrap"><p class="bubble-who">' + line.who + " · " + roleLabel + "</p>" +
+      '<div class="bubble"><div class="bubble-en"><span>' + esc(line.en) + "</span>" +
+      '<button class="spk" type="button" data-speak="' + esc(line.en) + '" aria-label="朗读这一句">' + SPEAKER_SVG + "</button></div>" +
+      '<p class="bubble-zh">' + esc(line.zh) + "</p></div></div></div>";
+  }
+
+  function quizCard(q, qi) {
+    var opts = q.options.map(function (o, oi) {
+      return '<button class="q-opt" type="button" data-opt="' + oi + '"><span class="k">' + "ABC"[oi] + "</span><span>" + esc(o) + "</span></button>";
+    }).join("");
+    return '<div class="q-card" data-q="' + qi + '">' +
+      '<p class="q-title">' + (qi + 1) + ". " + esc(q.q) + "</p>" +
+      '<div class="q-opts">' + opts + "</div>" +
+      '<p class="q-why">💡 ' + esc(q.why) + "</p></div>";
+  }
+
+  function renderScenario(sc) {
+    state.currentId = sc.id;
+    var cat = catOf(sc);
+    var done = !!state.done[sc.id];
+    var idx = SCENARIOS.indexOf(sc);
+    var prev = SCENARIOS[idx - 1];
+    var next = SCENARIOS[idx + 1];
+
+    var rolesHtml = sc.roles.map(function (r, i) {
+      return '<div class="role"><span class="role-avatar ' + (i === 1 ? "b" : "") + '" aria-hidden="true">' + (i === 0 ? "A" : "B") + "</span>" +
+        "<span><b>" + esc(r.en) + "</b><span>" + esc(r.zh) + "</span></span></div>";
+    }).join("");
+
+    var vocabHtml = sc.vocab.map(vocabCard).join("");
+    var phrasesHtml = sc.phrases.map(function (g) {
+      return '<div class="phrase-group"><h4>' + esc(g.fn) + '<span class="en">' + esc(g.en) + "</span></h4>" +
+        g.items.map(phraseRow).join("") + "</div>";
+    }).join("");
+    var dlgHtml = sc.dialogue.map(function (line, i) { return bubbleRow(line, i, sc); }).join("");
+    var mistakesHtml = sc.mistakes.map(function (m) {
+      return '<div class="mistake"><div class="mistake-wrong">' + esc(m.wrong) + '</div><div class="mistake-right">' + esc(m.right) + "</div>" +
+        '<div class="mistake-note">' + esc(m.note) + "</div></div>";
+    }).join("");
+    var models = sc.models || [];
+    var tasksHtml = sc.tasks.map(function (t, i) {
+      var model = models[i]
+        ? '<details class="model-answer"><summary>看示范回答 Model answer</summary><p>' + esc(models[i]) + "</p></details>"
+        : "";
+      return '<li><span class="num">' + (i + 1) + '</span><div class="task-body"><span>' + esc(t) + "</span>" + model + "</div></li>";
+    }).join("");
+    var quizHtml = sc.quiz.map(quizCard).join("");
+    var sourcesHtml = sc.sources.map(function (s) {
+      return '<li><a href="' + esc(s.u) + '" target="_blank" rel="noopener noreferrer">' + esc(s.t) + "</a></li>";
+    }).join("");
+    var realHtml = (sc.realWorld || []).map(function (r) {
+      return '<li><span>' + esc(r.fact) + '</span><a class="real-src" href="' + esc(r.u) + '" target="_blank" rel="noopener noreferrer">' + esc(r.t) + " ↗</a></li>";
+    }).join("");
+    var realBlock = realHtml
+      ? '<div class="realworld"><h4>现实要求 · Real-world Rules</h4><ul class="real-list">' + realHtml + "</ul></div>"
+      : "";
+    var cefr = CEFR[sc.level] || CEFR.B1;
+    var cefrNote = '<div class="cefr-note"><span class="cefr-badge">' + cefr.tag + '</span><div><b>CEFR 官方能力描述</b><p>' + esc(cefr.text) + '</p><a href="' + cefr.url + '" target="_blank" rel="noopener noreferrer">Council of Europe · CEFR 级别描述 ↗</a></div></div>';
+
+    root.innerHTML =
+      '<section class="scene-hero" data-num="' + pad(idx + 1) + '" data-cat="' + sc.cat + '">' +
+        '<div class="scene-top">' +
+          '<span class="pill ' + cat.cls + '">' + cat.label + " · " + cat.en + "</span>" +
+          '<span class="pill level">CEFR ' + esc(sc.level) + "</span>" +
+          '<span class="pill">🎭 ' + sc.roles.length + " 个角色</span>" +
+          '<span class="pill">' + sc.dialogue.length + " 句对话</span>" +
+        "</div>" +
+        '<h1 class="scene-title">' + esc(sc.zh) + "</h1>" +
+        '<p class="scene-title-en">' + esc(sc.en) + "</p>" +
+        '<div class="scene-roles">' + rolesHtml + "</div>" +
+        '<div class="scene-actions">' +
+          '<button class="mark-btn' + (done ? " on" : "") + '" type="button" data-action="mark" aria-pressed="' + done + '">' + (done ? "✓ 已练习" : "○ 标记为已练习") + "</button>" +
+          '<span class="hint-text">学习记录只保存在本机浏览器</span>' +
+          '<span class="spacer"></span>' +
+          '<button class="btn btn-ghost" type="button" data-action="print">🖨 打印 / 存 PDF</button>' +
+          '<div class="nav-arrows">' +
+            '<button class="arrow-btn" type="button" data-action="prev" aria-label="上一个场景"' + (prev ? "" : " disabled") + ">←</button>" +
+            '<button class="arrow-btn" type="button" data-action="next" aria-label="下一个场景"' + (next ? "" : " disabled") + ">→</button>" +
+          "</div>" +
+        "</div>" +
+      "</section>" +
+
+      '<section class="sec" id="sec-needs">' +
+        '<div class="sec-head"><span class="sec-kicker">01</span><h3>场景需求</h3><span class="en">Situation & Goals</span><span class="count">按 CEFR 校准 · 现实规则附来源</span></div>' +
+        '<div class="req-grid">' +
+          '<div class="req-block">' +
+            '<h4>情境 Setting</h4><p>' + esc(sc.setting) + "</p>" +
+            '<h4>你的目标 Goal</h4><p>' + esc(sc.goal) + "</p>" + cefrNote +
+            '<h4>能力清单 Can-do</h4><ul class="can-do">' + sc.canDo.map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") + "</ul>" +
+          "</div>" +
+          '<div class="req-block">' +
+            '<h4>对话角色 Roles</h4><div class="roles-line">' + sc.roles.map(function (r) { return '<span class="pill">' + esc(r.en) + " · " + esc(r.zh) + "</span>"; }).join("") + "</div>" +
+            '<h4 style="margin-top:16px">文化 & 礼仪 Tips</h4>' +
+            '<ul class="tips">' + sc.tips.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" +
+          "</div>" +
+        "</div>" +
+        realBlock +
+      "</section>" +
+
+      '<section class="sec" id="sec-vocab">' +
+        '<div class="sec-head"><span class="sec-kicker">02</span><h3>核心词汇</h3><span class="en">Key Vocabulary</span><span class="count">' + sc.vocab.length + " 个 · 点击卡片可临时显示释义</span></div>" +
+        '<div class="vocab-toolbar">' +
+          '<button class="chip' + (state.hideZh ? " on" : "") + '" type="button" data-action="hide-zh">' + (state.hideZh ? "🙈 自测模式：已遮挡中文" : "👁 自测模式：遮挡中文") + "</button>" +
+          '<span class="hint-text">点右上角 🔈 朗读；点 C 听 Cambridge 真人发音（需联网）</span>' +
+        "</div>" +
+        '<div class="vocab-grid">' + vocabHtml + "</div>" +
+      "</section>" +
+
+      '<section class="sec" id="sec-phrases">' +
+        '<div class="sec-head"><span class="sec-kicker">03</span><h3>高频句型</h3><span class="en">Useful Phrases</span><span class="count">按功能分组 · 直接背下来就能用</span></div>' +
+        '<div class="phrase-groups">' + phrasesHtml + "</div>" +
+      "</section>" +
+
+      '<section class="sec" id="sec-dialogue">' +
+        '<div class="sec-head"><span class="sec-kicker">04</span><h3>示范对话</h3><span class="en">Sample Dialogue</span><span class="count">' + sc.dialogue.length + " 句 · 中英对照</span></div>" +
+        '<div class="dlg-toolbar">' +
+          '<button class="btn btn-primary" type="button" data-action="play">▶ 播放整段对话</button>' +
+          '<button class="btn btn-ghost" type="button" data-action="stop">■ 停止</button>' +
+          '<span class="dlg-status" id="dlgStatus" aria-live="polite"></span>' +
+          '<span class="hint-text">音色 / 语速可在右上角「发音」里调整</span>' +
+        "</div>" +
+        '<div class="dlg">' + dlgHtml + "</div>" +
+      "</section>" +
+
+      '<section class="sec" id="sec-mistakes">' +
+        '<div class="sec-head"><span class="sec-kicker">05</span><h3>常见错误</h3><span class="en">Common Mistakes</span><span class="count">先看错句，再看正确说法</span></div>' +
+        '<div class="mistake-grid">' + mistakesHtml + "</div>" +
+      "</section>" +
+
+      '<section class="sec" id="sec-practice">' +
+        '<div class="sec-head"><span class="sec-kicker">06</span><h3>情景练习</h3><span class="en">Practice</span><span class="count">先做任务，再做小测</span></div>' +
+        '<div class="practice-grid">' +
+          '<div><h4 style="margin:0 0 9px;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)">角色扮演任务 Role-play</h4>' +
+          '<ol class="task-list">' + tasksHtml + "</ol></div>" +
+          "<div>" +
+            '<div class="quiz-head"><h4>随堂小测 Quick Check</h4><span class="quiz-score" id="quizScore">0 / ' + sc.quiz.length + "</span></div>" +
+            '<div class="quiz" data-quiz="' + esc(sc.id) + '">' + quizHtml + "</div>" +
+          "</div>" +
+        "</div>" +
+        '<div class="sources"><h4>参考来源 Sources</h4><ul class="source-list">' + sourcesHtml + "</ul></div>" +
+      "</section>" +
+
+      '<div class="scene-foot-nav">' +
+        '<button class="btn btn-ghost" type="button" data-action="prev"' + (prev ? "" : " disabled") + ">" + (prev ? "← " + esc(prev.zh) : "已是第一个场景") + "</button>" +
+        '<button class="btn btn-ghost" type="button" data-action="next"' + (next ? "" : " disabled") + ">" + (next ? esc(next.zh) + " →" : "已是最后一个场景") + "</button>" +
+      "</div>";
+
+    root.classList.remove("fade-in");
+    void root.offsetWidth;
+    root.classList.add("fade-in");
+    bindNavState();
+  }
+
+  function bindNavState() {
+    $all("[data-nav]").forEach(function (btn) {
+      var on = btn.getAttribute("data-nav") === state.currentId;
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-current", on ? "page" : "false");
+    });
+  }
+
+  /* ---------- actions ---------- */
+  function markDone() {
+    var sc = getScenario(state.currentId);
+    if (!sc) return;
+    state.done[sc.id] = !state.done[sc.id];
+    saveDone();
+    var btn = $('[data-action="mark"]', root);
+    if (btn) {
+      btn.classList.toggle("on", !!state.done[sc.id]);
+      btn.setAttribute("aria-pressed", String(!!state.done[sc.id]));
+      btn.textContent = state.done[sc.id] ? "✓ 已练习" : "○ 标记为已练习";
+    }
+    buildNav();
+    bindNavState();
+    toast(state.done[sc.id] ? "已记录：这个场景练过了" : "已取消练习标记");
+  }
+
+  function updateScore() {
+    var sc = getScenario(state.currentId);
+    if (!sc) return;
+    var cards = $all(".q-card", root);
+    var answered = 0, correct = 0;
+    cards.forEach(function (card) {
+      if (card.getAttribute("data-answered") === "1") {
+        answered++;
+        if (card.getAttribute("data-correct") === "1") correct++;
+      }
+    });
+    var el = $("#quizScore");
+    if (el) el.textContent = correct + " / " + sc.quiz.length + (answered ? "（已答 " + answered + " 题）" : "");
+  }
+
+  function answer(opt) {
+    var card = opt.closest(".q-card");
+    if (!card || card.getAttribute("data-answered") === "1") return;
+    var sc = getScenario(state.currentId);
+    if (!sc) return;
+    var qi = parseInt(card.getAttribute("data-q"), 10);
+    var oi = parseInt(opt.getAttribute("data-opt"), 10);
+    var correctIndex = sc.quiz[qi].a;
+    card.setAttribute("data-answered", "1");
+    card.classList.add("answered");
+    card.setAttribute("data-correct", oi === correctIndex ? "1" : "0");
+    $all(".q-opt", card).forEach(function (b, i) {
+      b.disabled = true;
+      if (i === correctIndex) b.classList.add("correct");
+      if (i === oi && oi !== correctIndex) b.classList.add("wrong");
+    });
+    updateScore();
+  }
+
+  /* ---------- routing ---------- */
+  function idFromHash() {
+    var m = (location.hash || "").match(/^#\/([\w-]+)/);
+    return m ? m[1] : null;
+  }
+
+  function scrollToContent() {
+    if (!root) return;
+    var y = root.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0);
+    window.scrollTo({ top: Math.max(0, y - 78), behavior: "auto" });
+  }
+
+  function go(id, updateHash) {
+    var sc = getScenario(id) || SCENARIOS[0];
+    if (!sc) return;
+    renderScenario(sc);
+    buildNav();
+    bindNavState();
+    updateProgress();
+    if (updateHash && location.hash !== "#/" + sc.id) {
+      try { history.replaceState(null, "", "#/" + sc.id); } catch (e) { location.hash = "#/" + sc.id; }
+    }
+    scrollToContent();
+  }
+
+  function nextScenario(dir) {
+    var i = SCENARIOS.indexOf(getScenario(state.currentId));
+    var target = SCENARIOS[i + dir];
+    if (target) go(target.id, true);
+  }
+
+  /* ---------- search ---------- */
+  var searchIndex = [];
+  SCENARIOS.forEach(function (s) {
+    s.vocab.forEach(function (v) {
+      searchIndex.push({ sId: s.id, sZh: s.zh, word: v.en, zh: v.zh, kind: "词汇" });
+    });
+    s.phrases.forEach(function (g) {
+      g.items.forEach(function (p) {
+        searchIndex.push({ sId: s.id, sZh: s.zh, word: p.en, zh: p.zh, kind: "句型" });
+      });
+    });
+  });
+
+  var searchInput = $("#searchInput");
+  var searchResults = $("#searchResults");
+
+  function closeSearch() {
+    searchResults.classList.remove("open");
+    searchResults.innerHTML = "";
+  }
+
+  function openSearch(q) {
+    var query = q.trim().toLowerCase();
+    if (!query) { closeSearch(); return; }
+    var hits = searchIndex.filter(function (item) {
+      return item.word.toLowerCase().indexOf(query) !== -1 || item.zh.indexOf(query) !== -1;
+    }).slice(0, 10);
+    if (!hits.length) {
+      searchResults.innerHTML = '<div class="search-empty">没有找到 “' + esc(q) + '”，换个关键词试试（支持中英文）。</div>';
+      searchResults.classList.add("open");
+      return;
+    }
+    searchResults.innerHTML = hits.map(function (h) {
+      return '<button class="search-hit" type="button" data-goto="' + esc(h.sId) + '" data-word="' + esc(h.word) + '">' +
+        '<span class="w">' + esc(h.word) + "</span>" +
+        '<span class="m">' + esc(h.sZh) + " · " + h.kind + "</span></button>";
+    }).join("");
+    searchResults.classList.add("open");
+  }
+
+  function jumpTo(sId, word) {
+    closeSearch();
+    searchInput.value = "";
+    searchInput.blur();
+    var target = getScenario(sId);
+    if (!target) return;
+    if (state.currentId !== sId) go(sId, true);
+    setTimeout(function () {
+      var el = null;
+      $all("[data-word]", root).forEach(function (node) {
+        if (!el && node.getAttribute("data-word") === word) el = node;
+      });
+      if (el) {
+        el.scrollIntoView({ block: "center", behavior: "smooth" });
+        el.classList.add("flash");
+        setTimeout(function () { el.classList.remove("flash"); }, 1600);
+      }
+    }, 90);
+  }
+
+  /* ---------- events ---------- */
+  navGroups.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-nav]");
+    if (!btn) return;
+    var id = btn.getAttribute("data-nav");
+    if (id === state.currentId) { scrollToContent(); return; }
+    if (location.hash === "#/" + id) { go(id, false); }
+    else { location.hash = "#/" + id; }
+  });
+
+  root.addEventListener("click", function (e) {
+    var speakBtn = e.target.closest("[data-speak]");
+    if (speakBtn) {
+      e.stopPropagation();
+      speak(speakBtn.getAttribute("data-speak"));
+      return;
+    }
+    var actionBtn = e.target.closest("[data-action]");
+    if (actionBtn) {
+      var action = actionBtn.getAttribute("data-action");
+      if (action === "mark") { markDone(); return; }
+      if (action === "prev") { nextScenario(-1); return; }
+      if (action === "next") { nextScenario(1); return; }
+      if (action === "play") { playDialogue(); return; }
+      if (action === "stop") { stopDialogue(false); return; }
+      if (action === "print") { window.print(); return; }
+      if (action === "hide-zh") {
+        state.hideZh = !state.hideZh;
+        document.body.classList.toggle("hide-zh", state.hideZh);
+        saveZhPref();
+        actionBtn.classList.toggle("on", state.hideZh);
+        actionBtn.textContent = state.hideZh ? "🙈 自测模式：已遮挡中文" : "👁 自测模式：遮挡中文";
+        toast(state.hideZh ? "已进入自测模式：中文释义被遮挡" : "已显示中文释义");
+        return;
+      }
+    }
+    var vocab = e.target.closest(".vocab-card");
+    if (vocab) { vocab.classList.toggle("reveal"); return; }
+    var opt = e.target.closest(".q-opt");
+    if (opt) { answer(opt); return; }
+  });
+
+  root.addEventListener("keydown", function (e) {
+    if ((e.key === "Enter" || e.key === " ") && e.target.classList && e.target.classList.contains("vocab-card")) {
+      e.preventDefault();
+      e.target.classList.toggle("reveal");
+    }
+  });
+
+  $("#zhToggle").addEventListener("click", function () {
+    state.hideZh = !state.hideZh;
+    document.body.classList.toggle("hide-zh", state.hideZh);
+    saveZhPref();
+    this.setAttribute("aria-pressed", String(state.hideZh));
+    this.querySelector(".zh-label").textContent = state.hideZh ? "中文：隐藏" : "中文：显示";
+  });
+
+  $("#randomBtn").addEventListener("click", function () {
+    var pool = SCENARIOS.filter(function (s) { return s.id !== state.currentId; });
+    var pick = pool[Math.floor(Math.random() * pool.length)] || SCENARIOS[0];
+    location.hash = "#/" + pick.id;
+    toast("随机场景：" + pick.zh);
+  });
+
+  $("#startBtn").addEventListener("click", function () {
+    var el = $("#layout");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  searchInput.addEventListener("input", function () { openSearch(searchInput.value); });
+  searchInput.addEventListener("focus", function () { if (searchInput.value.trim()) openSearch(searchInput.value); });
+  searchResults.addEventListener("click", function (e) {
+    var hit = e.target.closest("[data-goto]");
+    if (!hit) return;
+    jumpTo(hit.getAttribute("data-goto"), hit.getAttribute("data-word"));
+  });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".search-wrap")) closeSearch();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { closeSearch(); searchInput.blur(); stopDialogue(true); }
+    if (e.key === "/" && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
+
+  window.addEventListener("hashchange", function () {
+    var id = idFromHash();
+    if (id && id !== state.currentId) go(id, false);
+  });
+
+  /* ---------- init ---------- */
+  function init() {
+    state.hideZh = loadZhPref();
+    document.body.classList.toggle("hide-zh", state.hideZh);
+    var zhBtn = $("#zhToggle");
+    zhBtn.setAttribute("aria-pressed", String(state.hideZh));
+    zhBtn.querySelector(".zh-label").textContent = state.hideZh ? "中文：隐藏" : "中文：显示";
+
+    refreshVoicePanel();
+    setTimeout(refreshVoicePanel, 400);
+    setTimeout(refreshVoicePanel, 1500);
+    setTimeout(function () { voiceLoadTimedOut = true; refreshVoicePanel(); }, 2800);
+    var voiceSelect = $("#voiceSelect");
+    if (voiceSelect) {
+      voiceSelect.addEventListener("change", function () {
+        speechPrefs.voiceURI = this.value || "";
+        saveVoicePrefs();
+        refreshVoicePanel();
+        if (this.value) testVoice();
+      });
+    }
+    var rateSelect = $("#rateSelect");
+    if (rateSelect) {
+      rateSelect.addEventListener("change", function () {
+        var r = parseFloat(this.value);
+        speechPrefs.rate = (r >= 0.5 && r <= 1.5) ? r : 1;
+        saveVoicePrefs();
+        toast("语速已调整为 " + speechPrefs.rate + "×");
+      });
+    }
+    var voiceTestBtn = $("#voiceTestBtn");
+    if (voiceTestBtn) voiceTestBtn.addEventListener("click", testVoice);
+
+    var totalVocab = SCENARIOS.reduce(function (n, s) { return n + s.vocab.length; }, 0);
+    var totalPhrases = SCENARIOS.reduce(function (n, s) {
+      return n + s.phrases.reduce(function (m, g) { return m + g.items.length; }, 0);
+    }, 0);
+    if ($("#statScenarios")) $("#statScenarios").textContent = String(SCENARIOS.length);
+    if ($("#statWords")) $("#statWords").textContent = String(totalVocab);
+    if ($("#statPhrases")) $("#statPhrases").textContent = String(totalPhrases);
+
+    var hadHash = !!idFromHash();
+    var first = idFromHash();
+    var sc = getScenario(first) || SCENARIOS[0];
+    renderScenario(sc);
+    buildNav();
+    bindNavState();
+    updateProgress();
+    if (location.hash !== "#/" + sc.id) {
+      try { history.replaceState(null, "", "#/" + sc.id); } catch (e) { location.hash = "#/" + sc.id; }
+    }
+    if (hadHash) setTimeout(scrollToContent, 30);
+  }
+
+  init();
+})();
+
+</script>
+</body>
+</html>
